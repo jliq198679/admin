@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+      <h2>Log In</h2>
+      <mat-error *ngIf="!loginValid">
+        Usuario o contraseña incorrectos
+      </mat-error>
+      <mat-form-field>
+        <input matInput placeholder="Correo" [(ngModel)]="username" name="username" required>
+        <mat-error>
+          Por favor escriba su correo
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
+        <mat-error>
+          Por favor escriba la contraseña
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">
+        <mat-icon>power_settings_new</mat-icon>
+        Login
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -6,10 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Administración del Restaurant';
-  public isAuthenticated = false;
 
-  public logout(): void {
-    // todo
-  }
 }
