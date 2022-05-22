@@ -26,6 +26,14 @@ import {
   LayoutComponent
 } from './components';
 import { HttpClientModule } from '@angular/common/http';
+import { OfferListComponent } from './components/offers/offer-list/offer-list.component';
+import { OfferEditorComponent } from './components/offers/offer-editor/offer-editor.component';
+import { OfferGroupListComponent } from './components/offers-groups/offer-group-list/offer-group-list.component';
+import { OfferGroupEditorComponent } from './components/offers-groups/offer-group-editor/offer-group-editor.component';
+import { SpecialOfferEditorComponent } from './components/specials-offers/special-offer-editor/special-offer-editor.component';
+import { SpecialOfferListComponent } from './components/specials-offers/special-offer-list/special-offer-list.component';
+import { DailyOfferListComponent } from './components/daily-offers/daily-offer-list/daily-offer-list.component';
+import { DailyOfferEditorComponent } from './components/daily-offers/daily-offer-editor/daily-offer-editor.component';
 
 
 @NgModule({
@@ -33,7 +41,15 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    LayoutComponent
+    LayoutComponent,
+    OfferListComponent,
+    OfferEditorComponent,
+    OfferGroupListComponent,
+    OfferGroupEditorComponent,
+    SpecialOfferEditorComponent,
+    SpecialOfferListComponent,
+    DailyOfferListComponent,
+    DailyOfferEditorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService, StorageService } from './../../services';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -16,6 +17,7 @@ export class LayoutComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private storageService: StorageService,
+    private router: Router,
     private observer: BreakpointObserver) { }
 
   ngOnInit(): void {
@@ -39,5 +41,9 @@ export class LayoutComponent implements OnInit {
 
   get isAuthenticated() {
     return this.storageService.isAuthenticated();
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
   }
 }

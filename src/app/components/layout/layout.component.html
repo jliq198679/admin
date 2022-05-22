@@ -46,29 +46,29 @@
     -->
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" (click)="navigateTo('dashboard')">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" (click)="navigateTo('daily-offers')">
         <mat-icon>menu_book</mat-icon>
         <span>Ofertas del dia</span>
     </button>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" (click)="navigateTo('special-offers')">
       <mat-icon>dinner_dining</mat-icon>
       <span>Ofertas especiales</span>
     </button>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" (click)="navigateTo('offers')">
         <mat-icon>food_bank</mat-icon>
         <span>Platillos</span>
     </button>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" (click)="navigateTo('offer-groups')">
       <mat-icon>kebab_dining</mat-icon>
       <span>Categorías</span>
     </button>
