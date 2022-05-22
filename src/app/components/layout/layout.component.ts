@@ -13,7 +13,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export class LayoutComponent implements OnInit {
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
-  title = 'Administración del Restaurant';
+  title = 'PANEL DE ADMINISTRACIÓN';
   constructor(
     private authService: AuthService,
     private storageService: StorageService,

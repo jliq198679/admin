@@ -1,8 +1,9 @@
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
-  <span>
-    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
-    <button mat-button routerLink="/">{{title}}</button>
-  </span>
+  <div class="container-setting-admin">
+    <mat-icon class="icon-setting-admin">settings</mat-icon>
+    <h1 class="title-setting-admin">{{title}}</h1>
+  </div>
+
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
     <button mat-button routerLink="/game">
       <mat-icon>restaurant</mat-icon>
