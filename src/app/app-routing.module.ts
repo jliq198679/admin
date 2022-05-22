@@ -1,3 +1,7 @@
+import { ChefComponent } from './components/chef/chef.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { OurStoryComponent } from './components/our-story/our-story.component';
+import { PresentationComponent } from './components/presentation/presentation.component';
 import { OfferGroupListComponent } from './components/offers-groups/offer-group-list/offer-group-list.component';
 import { OfferListComponent } from './components/offers/offer-list/offer-list.component';
 import { SpecialOfferListComponent } from './components/specials-offers/special-offer-list/special-offer-list.component';
@@ -43,6 +47,22 @@ const routes: Routes = [
       {
         path: 'offer-groups',
         component: OfferGroupListComponent
+      },
+      {
+        path: 'presentation',
+        component: PresentationComponent
+      },
+      {
+        path: 'our-story',
+        component: OurStoryComponent
+      },
+      {
+        path: 'gallery',
+        component: GalleryComponent
+      },
+      {
+        path: 'chef',
+        component: ChefComponent
       }
     ]
   }

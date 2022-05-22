@@ -34,6 +34,10 @@ import { SpecialOfferEditorComponent } from './components/specials-offers/specia
 import { SpecialOfferListComponent } from './components/specials-offers/special-offer-list/special-offer-list.component';
 import { DailyOfferListComponent } from './components/daily-offers/daily-offer-list/daily-offer-list.component';
 import { DailyOfferEditorComponent } from './components/daily-offers/daily-offer-editor/daily-offer-editor.component';
+import { PresentationComponent } from './components/presentation/presentation.component';
+import { OurStoryComponent } from './components/our-story/our-story.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { ChefComponent } from './components/chef/chef.component';
 
 
 @NgModule({
@@ -49,7 +53,11 @@ import { DailyOfferEditorComponent } from './components/daily-offers/daily-offer
     SpecialOfferEditorComponent,
     SpecialOfferListComponent,
     DailyOfferListComponent,
-    DailyOfferEditorComponent
+    DailyOfferEditorComponent,
+    PresentationComponent,
+    OurStoryComponent,
+    GalleryComponent,
+    ChefComponent
   ],
   imports: [
     BrowserModule,
