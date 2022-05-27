@@ -20,6 +20,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatListModule} from '@angular/material/list';
 import {
   DashboardComponent,
   LoginComponent,
@@ -77,7 +79,9 @@ import { ChefComponent } from './components/chef/chef.component';
     MatSelectModule,
     MatOptionModule,
     MatSidenavModule,
-    MatDividerModule
+    MatDividerModule,
+    MatPaginatorModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

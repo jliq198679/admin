@@ -1,0 +1,32 @@
+::ng-deep .mat-table {
+  min-width: 100% !important;
+}
+
+::ng-deep .mat-header-row {
+  width: 100%;
+}
+
+::ng-deep .mat-row {
+  width: 100%;
+}
+
+::ng-deep app-offer-group-list .mat-elevation-z8 {
+  min-width: 100% !important;
+
+}
+
+::ng-deep mat-card{
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+}
+
+.table-title {
+  margin: 10px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+}
+
+
