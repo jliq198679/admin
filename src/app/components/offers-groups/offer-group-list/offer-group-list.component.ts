@@ -1,3 +1,5 @@
+import { GroupOfferInterface } from './../../../interfaces/group-offer/group-offer.interface';
+import { OfferGroupService } from './../../../services/group-offer/offer-group.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,14 +9,21 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './offer-group-list.component.html',
   styleUrls: ['./offer-group-list.component.scss']
 })
-export class OfferGroupListComponent implements AfterViewInit {
+export class OfferGroupListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  groupOffers: GroupOfferInterface[] = [];
+  displayedColumns: string[] = ['position', 'name_group_es', 'name_group_en'/*, 'symbol'*/];
+  dataSource = new MatTableDataSource<GroupOfferInterface>(this.groupOffers);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private groupOfferService: OfferGroupService) {
+
+  }
+
+  ngOnInit(): void {
+      this.groupOfferService.get().subscribe(groupOffers=>this.dataSource = new MatTableDataSource<GroupOfferInterface>(groupOffers));
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
