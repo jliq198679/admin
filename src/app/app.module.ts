@@ -47,6 +47,7 @@ import { OurStoryComponent } from './components/our-story/our-story.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ChefComponent } from './components/chef/chef.component';
 import { AuthInterceptorService } from './services';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AuthInterceptorService } from './services';
     PresentationComponent,
     OurStoryComponent,
     GalleryComponent,
-    ChefComponent
+    ChefComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -110,6 +112,7 @@ import { AuthInterceptorService } from './services';
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500, horizontalPosition: 'right'}
     }
     ],
+  entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
