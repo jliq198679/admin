@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
@@ -22,12 +22,17 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import {
   DashboardComponent,
   LoginComponent,
   LayoutComponent
 } from './components';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OfferListComponent } from './components/offers/offer-list/offer-list.component';
 import { OfferEditorComponent } from './components/offers/offer-editor/offer-editor.component';
 import { OfferGroupListComponent } from './components/offers-groups/offer-group-list/offer-group-list.component';
@@ -40,7 +45,7 @@ import { PresentationComponent } from './components/presentation/presentation.co
 import { OurStoryComponent } from './components/our-story/our-story.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ChefComponent } from './components/chef/chef.component';
-
+import { AuthInterceptorService } from './services';
 
 @NgModule({
   declarations: [
@@ -81,9 +86,28 @@ import { ChefComponent } from './components/chef/chef.component';
     MatSidenavModule,
     MatDividerModule,
     MatPaginatorModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: {hasBackdrop: false}
+    },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500, horizontalPosition: 'right'}
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

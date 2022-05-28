@@ -1,1 +1,26 @@
-<p>offer-group-editor works!</p>
+<h2 mat-dialog-title>{{groupOffer ? 'Editar' : 'Añadir'}} grupo de oferta</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form [formGroup]="form">
+
+    <div fxLayout="column" fxFlex >
+      <mat-form-field appearance="standard">
+        <mat-label>Nombre de categoría (Español)</mat-label>
+        <input matInput formControlName="name_group_es" #nameGroupEsInput>
+        <mat-error *ngIf="(form.get('name_group_es')).errors?.required">Este campo es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Nombre de categoría (Ingles)</mat-label>
+      <input matInput formControlName="name_group_en" #nameGroupEnInput>
+      <mat-error *ngIf="(form.get('name_group_en')).errors?.required">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+    </div>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button cdkFocusInitial [disabled]="!form.valid" (click)="store()">Aceptar</button>
+</mat-dialog-actions>

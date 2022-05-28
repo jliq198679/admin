@@ -13,7 +13,6 @@ export class AuthInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //Obtenemos el token del sessioStorage
     const token: string = this.storageService.getCurrentToken() as string;
-
     let request = req;
 	//Validamos si el token existe
     if (token) {

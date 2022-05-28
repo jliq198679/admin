@@ -1,8 +1,10 @@
+import { OfferGroupEditorComponent } from './../offer-group-editor/offer-group-editor.component';
 import { GroupOfferInterface } from './../../../interfaces/group-offer/group-offer.interface';
 import { OfferGroupService } from './../../../services/group-offer/offer-group.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-offer-group-list',
@@ -17,20 +19,31 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private groupOfferService: OfferGroupService) {
+  constructor(private groupOfferService: OfferGroupService, public dialog: MatDialog) {
 
   }
 
   ngOnInit(): void {
-      this.groupOfferService.get().subscribe(groupOffers=>this.dataSource = new MatTableDataSource<GroupOfferInterface>(groupOffers));
+      this.loadDatatable();
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  add() {
+  add(data?: GroupOfferInterface) {
+    const dialogRef = this.dialog.open(OfferGroupEditorComponent, {
+      width: '30%',
+      data: data
+    });
 
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadDatatable();
+    });
+  }
+
+  loadDatatable() {
+    this.groupOfferService.get().subscribe(groupOffers=>this.dataSource = new MatTableDataSource<GroupOfferInterface>(groupOffers));
   }
 
 }
