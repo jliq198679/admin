@@ -27,6 +27,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {
   DashboardComponent,
   LoginComponent,
@@ -92,7 +93,8 @@ import { AuthInterceptorService } from './services';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [
     {

@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class OfferGroupListComponent implements OnInit, AfterViewInit {
 
   groupOffers: GroupOfferInterface[] = [];
-  displayedColumns: string[] = ['position', 'name_group_es', 'name_group_en'/*, 'symbol'*/];
+  displayedColumns: string[] = ['position', 'name_group_es', 'name_group_en', 'operations'/*, 'symbol'*/];
   dataSource = new MatTableDataSource<GroupOfferInterface>(this.groupOffers);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -31,7 +31,7 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  add(data?: GroupOfferInterface) {
+  showModal(data?: GroupOfferInterface) {
     const dialogRef = this.dialog.open(OfferGroupEditorComponent, {
       width: '30%',
       data: data
@@ -40,6 +40,10 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(() => {
       this.loadDatatable();
     });
+  }
+
+  delete(data?: GroupOfferInterface) {
+
   }
 
   loadDatatable() {

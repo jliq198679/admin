@@ -32,8 +32,16 @@ export class OfferGroupEditorComponent implements OnInit {
 
   store() {
     const data = this.form.value;
-    this.groupOfferService.store(data).subscribe(resp=>{
-      this.snackBar.open("Categoría de oferta añadida de forma correcta", 'X');
+
+    if(this.groupOffer) {
+      data['id'] = this.groupOffer.id;
+    }
+
+    const response = this.groupOffer ? this.groupOfferService.update(data) : this.groupOfferService.store(data);
+
+    response.subscribe(resp=>{
+      const msg = `Categoría de oferta ${this.groupOffer ? 'actualizada' : 'añadida'} de forma correcta`;
+      this.snackBar.open(msg, 'X');
       this.dialogRef.close();
     })
   }

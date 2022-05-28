@@ -25,4 +25,12 @@ export class OfferGroupService {
     return this.http.post(`${environment.apiUrl}/api/group-offer`, formData);
   }
 
+  update(data: GroupOfferInterface): Observable<any> {
+    const formData = new FormData();
+    formData.append('name_group_es', data.name_group_es);
+    formData.append('name_group_en', data.name_group_en);
+
+    return this.http.post(`${environment.apiUrl}/api/group-offer/${data.id}`, formData);
+  }
+
 }
