@@ -33,4 +33,8 @@ export class OfferGroupService {
     return this.http.post(`${environment.apiUrl}/api/group-offer/${data.id}`, formData);
   }
 
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/api/group-offer/${id}`);
+  }
+
 }

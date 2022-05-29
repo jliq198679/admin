@@ -6,6 +6,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-offer-group-list',
@@ -22,6 +23,7 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
 
   constructor(private groupOfferService: OfferGroupService,
               public dialog: MatDialog,
+              private snackBar: MatSnackBar,
               private confirmDialogService: ConfirmDialogService) {
 
   }
@@ -48,7 +50,14 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
   async delete(data?: GroupOfferInterface) {
     const msg = "¿Desea eliminar la categoría de oferta seleccionada?"
     const confirm = await this.confirmDialogService.confirmDialog(msg);
-    console.log(confirm)
+
+    if(confirm) {
+      this.groupOfferService.delete(data.id).subscribe(()=>{
+        const msg = `Categoría de oferta eliminada de forma correcta`;
+        this.snackBar.open(msg, 'X');
+        this.loadDatatable();
+      })
+    }
   }
 
   loadDatatable() {
