@@ -49,6 +49,7 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      // TODO: Paginar en manteniendo la pagina actual cuando se insertan o eliminan los grupos de oferta
       this.loadDatatable(1, 7);
     });
   }
