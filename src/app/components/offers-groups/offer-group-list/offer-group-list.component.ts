@@ -3,7 +3,7 @@ import { OfferGroupEditorComponent } from './../offer-group-editor/offer-group-e
 import { GroupOfferInterface } from './../../../interfaces/group-offer/group-offer.interface';
 import { OfferGroupService } from './../../../services/group-offer/offer-group.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,6 +19,12 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['position', 'name_group_es', 'name_group_en', 'operations'/*, 'symbol'*/];
   dataSource = new MatTableDataSource<GroupOfferInterface>(this.groupOffers);
 
+  /** Campos de paginado del datatable */
+  pageEvent: PageEvent;
+  pageIndex: number = 1;
+  pageSize: number = 7;
+  length: number;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private groupOfferService: OfferGroupService,
@@ -29,7 +35,7 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-      this.loadDatatable();
+      this.loadDatatable(1, 7);
   }
 
   ngAfterViewInit() {
@@ -43,7 +49,7 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.loadDatatable();
+      this.loadDatatable(1, 7);
     });
   }
 
@@ -55,13 +61,23 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
       this.groupOfferService.delete(data.id).subscribe(()=>{
         const msg = `Categoría de oferta eliminada de forma correcta`;
         this.snackBar.open(msg, 'X');
-        this.loadDatatable();
+        this.loadDatatable(1, 7);
       })
     }
   }
 
-  loadDatatable() {
-    this.groupOfferService.get().subscribe(groupOffers=>this.dataSource = new MatTableDataSource<GroupOfferInterface>(groupOffers));
+  loadDatatable(pageIndex: number, pageSize: number) {
+    this.groupOfferService.datatable(pageIndex, pageSize).subscribe(
+      response=>{
+        this.dataSource = new MatTableDataSource<GroupOfferInterface>(response.data);
+        this.pageIndex = response.current_page - 1;
+        this.length = response.total;
+      }
+    );
+  }
+
+  getServerData(event) {
+    this.loadDatatable(event.previousPageIndex < event.pageIndex ? event.pageIndex + 1 : event.pageIndex - 1, this.pageSize);
   }
 
 }
