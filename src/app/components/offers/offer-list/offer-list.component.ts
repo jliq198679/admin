@@ -43,7 +43,7 @@ export class OfferListComponent implements OnInit {
 
   showModal(data?: OfferInterface) {
     const dialogRef = this.dialog.open(OfferEditorComponent, {
-      width: '30%',
+      width: '45%',
       data: data
     });
 

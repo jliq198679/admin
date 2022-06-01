@@ -1,1 +1,31 @@
-<p>offer-editor works!</p>
+<h2 mat-dialog-title>{{offer ? 'Editar' : 'Añadir'}} plato</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form [formGroup]="form">
+
+    <div fxLayout="row" fxFlex >
+      <div fxLayout="column" fxFlex>
+        <mat-form-field appearance="standard">
+          <mat-label>Nombre de plato (Español)</mat-label>
+          <input matInput formControlName="name_offer_es" #nameOfferEsInput>
+          <mat-error *ngIf="(form.get('name_offer_es')).errors?.required">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxFlex>
+        <mat-form-field appearance="standard">
+          <mat-label>Nombre de plato (Ingles)</mat-label>
+          <input matInput formControlName="name_offer_en" #nameOfferEnInput>
+          <mat-error *ngIf="(form.get('name_offer_en')).errors?.required">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button cdkFocusInitial [disabled]="!form.valid" (click)="store()">Aceptar</button>
+</mat-dialog-actions>
