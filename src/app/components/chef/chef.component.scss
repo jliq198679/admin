@@ -1,0 +1,39 @@
+::ng-deep app-presentation .mat-elevation-z8 {
+  min-width: 100% !important;
+}
+
+::ng-deep app-presentation mat-card{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.table-title {
+  margin: 10px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.presentation-form-container {
+  padding: 15px;
+}
+
+#fileInput {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
+
+.operation-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+::ng-deep app-chef .mat-card-header-text {
+  margin-left: 0px;
+}
