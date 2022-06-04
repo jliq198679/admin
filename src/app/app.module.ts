@@ -48,6 +48,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { ChefComponent } from './components/chef/chef.component';
 import { AuthInterceptorService } from './services';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule
   ],
   providers: [
     {

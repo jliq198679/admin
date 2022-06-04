@@ -8,13 +8,13 @@
         <mat-label>Nombre de categoría (Español)</mat-label>
         <input matInput formControlName="name_group_es" #nameGroupEsInput>
         <mat-error *ngIf="(form.get('name_group_es')).errors?.required">Este campo es obligatorio</mat-error>
-    </mat-form-field>
+      </mat-form-field>
 
-    <mat-form-field appearance="standard">
-      <mat-label>Nombre de categoría (Ingles)</mat-label>
-      <input matInput formControlName="name_group_en" #nameGroupEnInput>
-      <mat-error *ngIf="(form.get('name_group_en')).errors?.required">Este campo es obligatorio</mat-error>
-  </mat-form-field>
+      <mat-form-field appearance="standard">
+          <mat-label>Nombre de categoría (Ingles)</mat-label>
+          <input matInput formControlName="name_group_en" #nameGroupEnInput>
+          <mat-error *ngIf="(form.get('name_group_en')).errors?.required">Este campo es obligatorio</mat-error>
+      </mat-form-field>
     </div>
 
   </form>

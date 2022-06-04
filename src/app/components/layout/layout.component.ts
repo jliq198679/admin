@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService, StorageService } from './../../services';
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
@@ -18,6 +18,7 @@ export class LayoutComponent implements OnInit {
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router,
+    private cdRef:ChangeDetectorRef,
     private observer: BreakpointObserver) { }
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class LayoutComponent implements OnInit {
         this.sidenav.open();
       }
     });
+    this.cdRef.detectChanges();
   }
 
   public logout(): void {
