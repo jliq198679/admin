@@ -28,3 +28,12 @@
   left: 0px;
   top: 0px;
 }
+
+.operation-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+::ng-deep app-presentation .mat-card-header-text {
+  margin-left: 0px;
+}

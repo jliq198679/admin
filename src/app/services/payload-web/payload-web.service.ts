@@ -19,5 +19,4 @@ export class PayloadWebService {
   update(frame_name: string, data: any): Observable<any> {
     return this.http.put(`${environment.apiUrl}/api/frame-web/${frame_name}`, data); //
   }
-
-}// { ...data, type: 'payload_frame', frame_name: 'header' }
+}

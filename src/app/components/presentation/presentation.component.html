@@ -11,38 +11,50 @@
 <div class="mat-elevation-z8">
   <mat-card>
     <mat-card-content>
-      <div  fxLayout="row">
-        <div fxFlex="50">
-          <form [formGroup]="form">
-            <div fxLayout="column" fxFlex >
-              <mat-form-field appearance="standard">
-                <mat-label>Nombre del restaurant</mat-label>
-                <input matInput formControlName="name" #name>
-                <mat-error *ngIf="(form.get('name')).errors?.required">Este campo es obligatorio</mat-error>
-              </mat-form-field>
-
-              <mat-form-field appearance="standard">
-                <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
-                <ng-template #newFile>
-                    <mat-label>Selecciones el archivo de imagen</mat-label>
-                </ng-template>
-                <input matInput disabled>
-                <button mat-icon-button matSuffix (click)="fileInput.click()">
-                    <mat-icon>attach_file</mat-icon>
-                </button>
-                <input hidden formControlName="image" (change)="selectFile($event)" #fileInput type="file" id="file" accept="image/*">
-              </mat-form-field>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Imagen de presentación</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxLayout="row">
+            <div fxFlex="50">
+              <img mat-card-image
+                   src="{{presentationImage}}"
+                   alt="Imagen de presentación del restaurant"
+                   style='height: 100%; width: 100%; object-fit: contain'>
             </div>
-          </form>
-        </div>
-        <div fxFlex="50">
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions align="center">
-      <button mat-raised-button color="primary" cdkFocusInitial [disabled]="!form.valid" (click)="update()">Guardar</button>
-    </mat-card-actions>
-  </mat-card>
+            <div fxFlex="50">
+                  <div  fxLayout="column">
+                    <form [formGroup]="form">
+                      <div fxLayout="column" fxFlex >
+                        <mat-form-field appearance="standard">
+                          <mat-label>Nombre del restaurant</mat-label>
+                          <input matInput formControlName="name" #name>
+                          <mat-error *ngIf="(form.get('name')).errors?.required">Este campo es obligatorio</mat-error>
+                        </mat-form-field>
 
+                        <mat-form-field appearance="standard">
+                          <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+                          <ng-template #newFile>
+                              <mat-label>Selecciones el archivo de imagen</mat-label>
+                          </ng-template>
+                          <input matInput disabled>
+                          <button mat-icon-button matSuffix (click)="fileInput.click()">
+                              <mat-icon>attach_file</mat-icon>
+                          </button>
+                          <input hidden formControlName="image" (change)="selectFile($event)" #fileInput type="file" id="file" accept="image/*">
+                        </mat-form-field>
+                      </div>
+                    </form>
+                    <div class="operation-btn">
+                      <button mat-raised-button color="primary" cdkFocusInitial [disabled]="!form.valid" (click)="update()">Guardar</button>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
 </div>
 

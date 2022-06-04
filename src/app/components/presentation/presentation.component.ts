@@ -1,3 +1,4 @@
+import { defaultImg } from './../../tools';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PayloadWebService, UploadService } from './../../services';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PresentationComponent implements OnInit {
 
-  presentation: any;
+  presentationImage: string | ArrayBuffer = defaultImg;
   form: FormGroup;
   selectedFiles
 
@@ -23,26 +24,35 @@ export class PresentationComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: [this.presentation?.name || null, [Validators.required]],
-      image: [this.presentation?.image || null],
+      name: [null, [Validators.required]],
+      image: [null],
     });
 
     this.payloadWebService.get('header').subscribe(resp=>{
      const data = resp.payload_frame;
       this.form.get('name').setValue(data.name);
+
+      if(data.image) {
+        this.presentationImage = data.image;
+      }
     })
 
   }
 
   selectFile(event) {
+    const fileReader = new FileReader();
     this.selectedFiles = event.target.files;
+
+    fileReader.onload = () => {
+      return this.presentationImage = fileReader.result;
+    };
+
+    fileReader.readAsDataURL(this.selectedFiles[0]);
   }
 
   update() {
     let data = {
-      id: 2,
-      name: this.form.value.name,
-      frame_name: 'header'
+      name: this.form.value.name
     };
 
     if(this.selectedFiles) {
