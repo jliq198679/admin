@@ -1,3 +1,4 @@
+import { ContactComponent } from './components/contact/contact.component';
 import { ChefComponent } from './components/chef/chef.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { OurStoryComponent } from './components/our-story/our-story.component';
@@ -63,6 +64,10 @@ const routes: Routes = [
       {
         path: 'chef',
         component: ChefComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
       }
     ]
   }

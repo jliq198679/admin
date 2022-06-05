@@ -1,3 +1,4 @@
+import { ContactComponent } from './components/contact/contact.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -68,7 +69,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     OurStoryComponent,
     GalleryComponent,
     ChefComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
