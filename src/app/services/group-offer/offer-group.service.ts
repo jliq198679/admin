@@ -17,14 +17,18 @@ export class OfferGroupService {
     return this.http.get(`${environment.apiUrl}/group-offer${id ? '/' + id : ''}`);
   }
 
-  datatable(page: number, per_page: number): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/group-offer?page=${page}&per_page=${per_page}`);
+  datatable(page: number, per_page: number, category_id: number): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/group-offer${category_id ? '/get-subCategory/' + category_id : ''}?page=${page}&per_page=${per_page}`);
   }
 
   store(data: GroupOfferInterface): Observable<any> {
     const formData = new FormData();
     formData.append('name_group_es', data.name_group_es);
     formData.append('name_group_en', data.name_group_en);
+
+    if(data.category_id) {
+      formData.append('category_id', data.category_id.toString());
+    }
 
     return this.http.post(`${environment.apiUrl}/api/group-offer`, formData);
   }
@@ -34,7 +38,11 @@ export class OfferGroupService {
     formData.append('name_group_es', data.name_group_es);
     formData.append('name_group_en', data.name_group_en);
 
-    return this.http.post(`${environment.apiUrl}/api/group-offer/${data.id}`, formData);
+    if(data.category_id) {
+      formData.append('category_id', data.category_id.toString());
+    }
+
+    return this.http.put(`${environment.apiUrl}/api/group-offer/${data.id}`, formData);
   }
 
   delete(id: number): Observable<any> {
