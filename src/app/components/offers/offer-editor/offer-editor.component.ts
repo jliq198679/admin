@@ -100,4 +100,6 @@ export class OfferEditorComponent implements OnInit {
   get offerImageUrl(): string {
     return this.offerImage !== 'null' ? this.offerImage as string : defaultImg;
   }
+
+  compareWithFunc = (a: any, b: any) => a == b;
 }

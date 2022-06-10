@@ -55,11 +55,11 @@
 
       </div>
       <div fxFlex="50">
-        <div fxLayout="column" fxFlex >
+        <div fxLayout="column" fxFlex>
 
           <mat-form-field appearance="standard">
             <mat-label>Categoría/Subcategoría</mat-label>
-            <mat-select formControlName="group_offer_id">
+            <mat-select formControlName="group_offer_id" [compareWith]="compareWithFunc">
               <mat-option *ngFor="let offerGroup of offerGroups" value="{{offerGroup.id}}">{{offerGroup.name_group_es}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -76,11 +76,14 @@
             <input hidden formControlName="url_imagen" (change)="selectFile($event)" #fileInput type="file" id="file" accept="image/*">
           </mat-form-field>
 
-          <img mat-card-image
-            src="{{offerImageUrl}}"
-            alt="Imagen de presentación del restaurant"
-            style='width: 75%; object-fit: contain'
-          >
+          <div fxLayoutAlign="center center">
+            <img mat-card-image
+              src="{{offerImageUrl}}"
+              alt="Imagen de presentación del restaurant"
+              style='width: 75%; object-fit: contain'
+            >
+          </div>
+
 
         </div>
 

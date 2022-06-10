@@ -60,7 +60,7 @@ export class OfferListComponent implements OnInit {
 
     if(confirm) {
       this.offerService.delete(data.id).subscribe(()=>{
-        const msg = `Plato eliminada de forma correcta`;
+        const msg = `Plato eliminado de forma correcta`;
         this.snackBar.open(msg, 'X');
         this.loadDatatable(1, 7);
       })
