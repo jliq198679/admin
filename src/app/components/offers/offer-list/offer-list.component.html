@@ -25,7 +25,13 @@
     <!-- Imagen -->
     <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef> Imagen </th>
-      <td mat-cell *matCellDef="let element"> Imagen </td>
+      <td mat-cell *matCellDef="let element">
+        <img mat-card-image
+            src="{{offerImage(element)}}"
+            alt="Imagen de presentación del restaurant"
+            style='height: 40px; width: 40px; object-fit: contain'
+        >
+      </td>
     </ng-container>
 
     <!-- Nombre de platillo (Esp)-->
@@ -43,7 +49,7 @@
      <!--  Categoria de oferta  -->
      <ng-container matColumnDef="group_offer_id">
       <th mat-header-cell *matHeaderCellDef> Categoría de oferta </th>
-      <td mat-cell *matCellDef="let element"> {{element.group_offer_id}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.group_offer.name_group_es}} </td>
     </ng-container>
 
     <!-- Weight Column -->

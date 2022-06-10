@@ -1,3 +1,4 @@
+import { defaultImg } from './../../../tools/default.tool';
 import { ConfirmDialogService, OfferService } from './../../../services';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { OfferInterface } from './../../../interfaces';
@@ -43,7 +44,7 @@ export class OfferListComponent implements OnInit {
 
   showModal(data?: OfferInterface) {
     const dialogRef = this.dialog.open(OfferEditorComponent, {
-      width: '45%',
+      width: '60%',
       data: data
     });
 
@@ -78,6 +79,10 @@ export class OfferListComponent implements OnInit {
 
   getServerData(event) {
     this.loadDatatable(event.previousPageIndex < event.pageIndex ? event.pageIndex + 1 : event.pageIndex - 1, this.pageSize);
+  }
+
+  offerImage(offer: OfferInterface): string {
+    return offer.url_imagen !== 'null' ? offer.url_imagen : defaultImg;
   }
 
 }

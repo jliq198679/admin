@@ -2,30 +2,94 @@
 <mat-dialog-content class="mat-typography">
 
   <form [formGroup]="form">
+    <div fxLayout="row" fxLayoutGap="20px">
+      <div fxFlex="50">
+        <div  fxLayout="column">
 
-    <div fxLayout="row" fxFlex >
-      <div fxLayout="column" fxFlex>
-        <mat-form-field appearance="standard">
-          <mat-label>Nombre de plato (Español)</mat-label>
-          <input matInput formControlName="name_offer_es" #nameOfferEsInput>
-          <mat-error *ngIf="(form.get('name_offer_es')).errors?.required">Este campo es obligatorio</mat-error>
-        </mat-form-field>
+          <div fxLayout="column" fxFlex >
+
+            <mat-form-field appearance="standard">
+              <mat-label>Nombre (Español)</mat-label>
+              <input matInput formControlName="name_offer_es" #name_offer_es>
+              <mat-error *ngIf="(form.get('name_offer_es')).errors?.required">Este campo es obligatorio</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard">
+              <mat-label>Nombre (Ingles)</mat-label>
+              <input matInput formControlName="name_offer_en" #name_offer_en>
+              <mat-error *ngIf="(form.get('name_offer_en')).errors?.required">Este campo es obligatorio</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard">
+              <mat-label>Descripción(Español)</mat-label>
+              <textarea matInput formControlName="description_offer_es" #description_offer_es></textarea>
+              <mat-error *ngIf="(form.get('description_offer_es')).errors?.required">Este campo es obligatorio</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard">
+              <mat-label>Descripción(Ingles)</mat-label>
+              <textarea matInput formControlName="description_offer_en" #description_offer_en></textarea>
+              <mat-error *ngIf="(form.get('description_offer_en')).errors?.required">Este campo es obligatorio</mat-error>
+            </mat-form-field>
+
+            <div fxLayout="row wrap" fxLayoutGap="20px grid">
+              <div fxFlex="50">
+                <mat-form-field appearance="standard">
+                  <mat-label>Precio (CUP)</mat-label>
+                  <input matInput formControlName="price_cup" #price_cup>
+                  <mat-error *ngIf="(form.get('price_cup')).errors?.required">Este campo es obligatorio</mat-error>
+                </mat-form-field>
+              </div>
+              <div fxFlex="50">
+                <mat-form-field appearance="standard">
+                  <mat-label>Precio (USD)</mat-label>
+                  <input matInput formControlName="price_usd" #price_usd>
+                  <mat-error *ngIf="(form.get('price_usd')).errors?.required">Este campo es obligatorio</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+
       </div>
 
-      <div fxLayout="column" fxFlex>
-        <mat-form-field appearance="standard">
-          <mat-label>Nombre de plato (Ingles)</mat-label>
-          <input matInput formControlName="name_offer_en" #nameOfferEnInput>
-          <mat-error *ngIf="(form.get('name_offer_en')).errors?.required">Este campo es obligatorio</mat-error>
-        </mat-form-field>
       </div>
+      <div fxFlex="50">
+        <div fxLayout="column" fxFlex >
 
+          <mat-form-field appearance="standard">
+            <mat-label>Categoría/Subcategoría</mat-label>
+            <mat-select formControlName="group_offer_id">
+              <mat-option *ngFor="let offerGroup of offerGroups" value="{{offerGroup.id}}">{{offerGroup.name_group_es}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard">
+            <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+            <ng-template #newFile>
+                <mat-label>Selecciones el archivo de imagen</mat-label>
+            </ng-template>
+            <input matInput disabled>
+            <button mat-icon-button matSuffix (click)="fileInput.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+            <input hidden formControlName="url_imagen" (change)="selectFile($event)" #fileInput type="file" id="file" accept="image/*">
+          </mat-form-field>
+
+          <img mat-card-image
+            src="{{offerImageUrl}}"
+            alt="Imagen de presentación del restaurant"
+            style='width: 75%; object-fit: contain'
+          >
+
+        </div>
+
+      </div>
     </div>
-
   </form>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button cdkFocusInitial [disabled]="!form.valid" (click)="store()">Aceptar</button>
+  <button mat-button cdkFocusInitial [disabled]="!form.valid" (click)="save()">Aceptar</button>
 </mat-dialog-actions>

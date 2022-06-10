@@ -5,6 +5,8 @@ export interface OfferInterface {
     name_offer_en?: string;
     description_offer_es?: string;
     description_offer_en?: string;
-    image?: string;
+    price_cup?: number;
+    price_usd?: number;
+    url_imagen?: string;
     group_offer_id: number;
 }
