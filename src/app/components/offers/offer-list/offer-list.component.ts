@@ -1,12 +1,13 @@
-import { defaultImg } from './../../../tools/default.tool';
-import { ConfirmDialogService, OfferService } from './../../../services';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { OfferInterface } from './../../../interfaces';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { defaultImg } from './../../../tools';
+import { OfferInterface } from './../../../interfaces';
 import { OfferEditorComponent } from '../offer-editor';
+import { ConfirmDialogService, OfferService, SpecialOfferService } from './../../../services';
 
 @Component({
   selector: 'app-offer-list',
@@ -16,7 +17,7 @@ import { OfferEditorComponent } from '../offer-editor';
 export class OfferListComponent implements OnInit {
 
   offers: OfferInterface[] = [];
-  displayedColumns: string[] = ['position', 'image', 'name_offer_es', 'name_offer_en', 'group_offer_id', 'operations'];
+  displayedColumns: string[] = ['position', 'image', 'name_offer_es', 'group_offer_id', 'price_cup', 'price_usd', 'is_promotion', 'operations'];
   dataSource = new MatTableDataSource<OfferInterface>(this.offers);
 
   /** Campos de paginado del datatable */
@@ -30,6 +31,7 @@ export class OfferListComponent implements OnInit {
   constructor(private offerService: OfferService,
               public dialog: MatDialog,
               private snackBar: MatSnackBar,
+              private specialOfferService: SpecialOfferService,
               private confirmDialogService: ConfirmDialogService) {
 
   }
@@ -83,6 +85,21 @@ export class OfferListComponent implements OnInit {
 
   offerImage(offer: OfferInterface): string {
     return offer.url_imagen !== 'null' ? offer.url_imagen : defaultImg;
+  }
+
+  toggleSpecialOffer(event: MatSlideToggleChange , element: OfferInterface) {
+    if(event.checked) {
+      this.specialOfferService.store(element.id).subscribe(()=>{
+        const msg = `Plato añadido a la oferta especial`;
+        this.snackBar.open(msg, 'X');
+      })
+    }
+    else {
+      this.specialOfferService.delete(element.id).subscribe(()=>{
+        const msg = `El plato ya no forma parte de oferta especial`;
+        this.snackBar.open(msg, 'X');
+      })
+    }
   }
 
 }
