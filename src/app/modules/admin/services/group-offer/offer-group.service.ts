@@ -17,6 +17,10 @@ export class OfferGroupService {
     return this.http.get(`${environment.apiUrl}/group-offer${id ? '/' + id : ''}`);
   }
 
+  getGroupsWithOffers(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/group-offer/offers`);
+  }
+
   datatable(page: number, per_page: number, category_id: number): Observable<any> {
     return this.http.get(`${environment.apiUrl}/group-offer${category_id ? '/get-subCategory/' + category_id : ''}?page=${page}&per_page=${per_page}`);
   }

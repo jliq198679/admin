@@ -22,6 +22,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -44,7 +45,8 @@ const MATERIAL_MODULES = [
   MatNativeDateModule,
   MatSnackBarModule,
   MatTooltipModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatExpansionModule
 ];
 
 @NgModule({

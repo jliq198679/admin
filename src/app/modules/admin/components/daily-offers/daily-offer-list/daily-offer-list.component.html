@@ -1,1 +1,86 @@
-<p>daily-offer-list works!</p>
+<div class="flex-container"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+  <div class="flex-item">
+    <h2 class="table-title"><mat-icon>food_bank</mat-icon><span>Oferta del dia</span></h2>
+  </div>
+  <div class="flex-item">
+    <button mat-button class="menu-button" (click)="showModal()">
+      <mat-icon>add</mat-icon>
+      <span>Añadir</span>
+    </button>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No </th>
+      <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+    </ng-container>
+
+    <!-- Imagen -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> Imagen </th>
+      <td mat-cell *matCellDef="let element">
+        <div fxLayoutAlign="none center">
+          <img mat-card-image
+              src="{{offerImage(element)}}"
+              alt="Imagen de presentación del restaurant"
+              style='height: 40px; width: 40px; object-fit: contain'
+          >
+        </div>
+
+      </td>
+    </ng-container>
+
+    <!-- Nombre de platillo (Esp)-->
+    <ng-container matColumnDef="name_offer_es">
+      <th mat-header-cell *matHeaderCellDef> Nombre de platillo (Esp) </th>
+      <td mat-cell *matCellDef="let element"> {{element.name_offer_es}} </td>
+    </ng-container>
+
+    <!--  Categoria de oferta  -->
+    <ng-container matColumnDef="group_offer_id">
+      <th mat-header-cell *matHeaderCellDef> Categoría de oferta </th>
+      <td mat-cell *matCellDef="let element"> {{element.group_offer.name_group_es}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price_cup">
+      <th mat-header-cell *matHeaderCellDef> Precio (CUP) </th>
+      <td mat-cell *matCellDef="let element"> {{element.price_cup}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price_usd">
+      <th mat-header-cell *matHeaderCellDef> Precio (USD) </th>
+      <td mat-cell *matCellDef="let element"> {{element.price_usd}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="operations">
+      <th mat-header-cell *matHeaderCellDef> Operaciones </th>
+      <td mat-cell *matCellDef="let element">
+        <!--<button mat-button class="table-operation-btn" matTooltip="Agregar a oferta especial" (click)="addToSpecial(element)"><mat-icon>hotel_class</mat-icon></button>-->
+        <button mat-button color="primary" class="table-operation-btn" matTooltip="Editar" (click)="showModal(element)"><mat-icon>edit</mat-icon></button>
+        <button mat-button color="warn" class="table-operation-btn" matTooltip="Eliminar" (click)="delete(element)"><mat-icon>delete</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator  #paginator
+                  [length]="length"
+                  [pageIndex]="pageIndex"
+                  [pageSize]="pageSize"
+                  [pageSizeOptions]="[7]"
+                  (page)="getServerData($event)"
+                  showFirstLastButtons>
+  </mat-paginator>
+</div>
+
+

@@ -7,3 +7,4 @@ export * from './offer';
 export * from './payload-web';
 export * from './upload';
 export * from './special-offer';
+export * from './daily-offer';
