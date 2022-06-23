@@ -38,15 +38,7 @@ export class OfferGroupService {
   }
 
   update(data: GroupOfferInterface): Observable<any> {
-    const formData = new FormData();
-    formData.append('name_group_es', data.name_group_es);
-    formData.append('name_group_en', data.name_group_en);
-
-    if(data.category_id) {
-      formData.append('category_id', data.category_id.toString());
-    }
-
-    return this.http.put(`${environment.apiUrl}/api/group-offer/${data.id}`, formData);
+    return this.http.put(`${environment.apiUrl}/api/group-offer/${data.id}`, data);
   }
 
   delete(id: number): Observable<any> {
