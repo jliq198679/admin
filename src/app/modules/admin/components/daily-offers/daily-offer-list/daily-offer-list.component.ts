@@ -17,7 +17,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class DailyOfferListComponent implements OnInit {
 
   offers: OfferInterface[] = [];
-  displayedColumns: string[] = ['position', 'image', 'name_offer_es', 'group_offer_id', 'price_cup', 'price_usd', 'operations'];
+  displayedColumns: string[] = ['position', 'image', 'name_offer_es', 'group_offer_id', 'count_offer', 'operations'];
   dataSource = new MatTableDataSource<any/*OfferInterface*/>(this.offers);
 
   /** Campos de paginado del datatable */
@@ -45,7 +45,7 @@ export class DailyOfferListComponent implements OnInit {
 
   showModal(data?: any/*OfferInterface*/) {
     const dialogRef = this.dialog.open(DailyOfferEditorComponent, {
-      width: '60%',
+      width: '45%',
       data: data
     });
 
@@ -60,7 +60,7 @@ export class DailyOfferListComponent implements OnInit {
     const confirm = await this.confirmDialogService.confirmDialog(msg);
 
     if(confirm) {
-      this.dailyOfferService.delete(data.id).subscribe(()=>{
+      this.dailyOfferService.delete(data.offer_daily.id).subscribe(()=>{
         const msg = `Plato eliminado de forma correcta de la oferta del dia`;
         this.snackBar.open(msg, 'X');
         this.loadDatatable(1, 7);

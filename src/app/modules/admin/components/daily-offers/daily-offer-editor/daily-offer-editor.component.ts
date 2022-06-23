@@ -1,9 +1,8 @@
-import { GroupOfferWithOffersInterface } from './../../../interfaces';
+import { GroupOfferWithOffersInterface, DailyOfferInterface } from './../../../interfaces';
 import { OfferService, OfferGroupService, DailyOfferService } from './../../../services';
-import { defaultImg } from './../../../tools/default.tool';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
@@ -14,13 +13,111 @@ import { Component, OnInit, Inject } from '@angular/core';
 export class DailyOfferEditorComponent implements OnInit {
 
   form: FormGroup;
-  offer/*: OfferInterface*/;
+  dailyOffer: DailyOfferInterface;
   mainOfferGroups: GroupOfferWithOffersInterface[] = [];
-
-  offerImage: string | ArrayBuffer = defaultImg;
-  selectedFiles
-
   step = 0;
+
+  constructor(public dialogRef: MatDialogRef<DailyOfferEditorComponent>,
+              private offerService: OfferService,
+              private dailyOfferService: DailyOfferService,
+              private snackBar: MatSnackBar,
+              private offerGroupService: OfferGroupService,
+              private fb: FormBuilder,
+              @Inject(MAT_DIALOG_DATA) public data/*?: OfferInterface*/) {
+    // this.offer = data;
+  }
+
+  ngOnInit(): void {
+    this.form = this.fb.group({});
+    this.loadGroupsData();
+
+    if(this.data) {
+      this.loadCurrentDailyOffers();
+    }
+
+
+
+    console.log(this.data)
+  }
+
+  loadGroupsData() {
+    this.offerGroupService.getGroupsWithOffers().subscribe(
+      response=>{
+        this.prepareOfferGroupList(response.data)
+      }
+    );
+  }
+
+  loadCurrentDailyOffers() {
+    this.dailyOfferService.get().subscribe(
+      groups=>{
+        for(let group of groups) {
+          for(let offer of group.offers) {
+            this.form.controls[offer.id].setValue(offer.offer_daily.count_offer);
+          }
+        }
+      }
+    );
+  }
+
+  prepareOfferGroupList(groupOffers: GroupOfferWithOffersInterface[]) {
+    let mainOfferGroups = {};
+    let mainGroupCounter = 0;
+
+    for(let go of groupOffers) {
+
+      if(this.data) {
+        const index = go.offers.findIndex(item=>item.id === this.data.id);
+
+        if(index !== -1) {
+          this.setStep(mainGroupCounter);
+          //this.form.controls[this.data.id]. TODO: Poner el foco en el plato correspondiente
+        }
+      }
+
+      if(go.category_id === null){
+        mainOfferGroups[go.id] = go;
+        mainGroupCounter++;
+      }
+      else {
+        mainOfferGroups[go.category_id].offers.concat(go['offers'])
+      }
+    }
+
+    this.mainOfferGroups = Object.keys(mainOfferGroups).map(key=>{ return mainOfferGroups[key] });
+    console.log(this.mainOfferGroups)
+    for(let mainOffer of this.mainOfferGroups) {
+      for(let offer of mainOffer.offers) {
+        this.form.addControl(offer.id.toString(), new FormControl(null));
+      }
+    }
+  }
+
+  save() {
+
+    let offers = Object.keys(this.form.value).map(
+      key=>{
+        return {
+          offer_id: Number(key),
+          count_offer: typeof this.form.value[key] === null ? 0 : this.form.value[key]
+        }
+      }
+    );
+
+    offers = offers.filter(item=>item.count_offer > 0);
+
+    if(offers.length > 0) {
+      this.serverRequest(offers);
+    }
+  }
+
+  serverRequest(data) {
+    this.dailyOfferService.store(data).subscribe(resp=>{
+      const msg = `Oferta diaria almacenada de forma correcta`;
+      this.snackBar.open(msg, 'X');
+      this.dialogRef.close();
+    })
+  }
 
   setStep(index: number) {
     this.step = index;
@@ -32,83 +129,6 @@ export class DailyOfferEditorComponent implements OnInit {
 
   prevStep() {
     this.step--;
-  }
-
-  constructor(public dialogRef: MatDialogRef<DailyOfferEditorComponent>,
-              private offerService: OfferService,
-              private dailyOffer: DailyOfferService,
-              private snackBar: MatSnackBar,
-              private offerGroupService: OfferGroupService,
-              private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data/*?: OfferInterface*/) {
-    this.offer = data;
-  }
-
-  ngOnInit(): void {
-    this.form = this.fb.group({});
-    this.loadData()
-  }
-
-  loadData() {
-    this.offerGroupService.getGroupsWithOffers().subscribe(
-      response=>{
-        this.prepareOfferGroupList(response.data)
-      }
-    );
-  }
-
-  prepareOfferGroupList(groupOffers: GroupOfferWithOffersInterface[]) {
-    let mainOfferGroups = {};
-
-    for(let go of groupOffers) {
-      if(go.category_id === null){
-        mainOfferGroups[go.id] = go;
-      }
-      else {
-        mainOfferGroups[go.category_id].offers.concat(go['offers'])
-      }
-    }
-
-    this.mainOfferGroups = Object.keys(mainOfferGroups).map(key=>{ return mainOfferGroups[key] });
-    console.log(this.mainOfferGroups)
-    for(let mainOffer of this.mainOfferGroups) {
-      for(let offer of mainOffer.offers) {
-        this.form.addControl(offer.id.toString(), new FormControl({}));
-      }
-    }
-  }
-
-
-  getServerData(event) {
-    // this.loadData(event.previousPageIndex < event.pageIndex ? event.pageIndex + 1 : event.pageIndex - 1, this.pageSize);
-  }
-
-  save() {
-
-    let offers = Object.keys(this.form.value).map(
-      key=>{
-        return {
-          offer_id: Number(key),
-          count_offer: typeof this.form.value[key] === 'object' ? 0 : this.form.value[key]
-        }
-      }
-    );
-
-    offers = offers.filter(item=>item.count_offer > 0);
-
-    console.log(offers)
-
-    if(offers.length > 0) {
-      this.serverRequest(offers);
-    }
-  }
-
-  serverRequest(data) {
-    this.dailyOffer.store(data).subscribe(resp=>{
-      const msg = `Oferta diaria almacenada de forma correcta`;
-      this.snackBar.open(msg, 'X');
-      this.dialogRef.close();
-    })
   }
 
 }

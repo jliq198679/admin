@@ -13,7 +13,7 @@ export class DailyOfferService {
   }
 
   get(id?: string): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/offer-daily${id ? '/' + id : ''}`);
+    return this.http.get(`${environment.apiUrl}/api/offer-daily${id ? '/' + id : ''}`);
   }
 
   datatable(page: number, per_page: number): Observable<any> {

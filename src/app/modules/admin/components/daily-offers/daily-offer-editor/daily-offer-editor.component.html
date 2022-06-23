@@ -1,42 +1,44 @@
 <h2 mat-dialog-title>Añadir platos a la oferta diaria</h2>
 <mat-dialog-content class="mat-typography">
+  <div class="accordion-daily-offer">
+    <form [formGroup]="form">
 
-  <form [formGroup]="form">
+      <mat-accordion class="example-headers-align">
 
-    <mat-accordion class="example-headers-align">
+        <mat-expansion-panel *ngFor="let item of mainOfferGroups; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>{{item?.name_group_es | uppercase }}</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-      <mat-expansion-panel *ngFor="let item of mainOfferGroups; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <strong>{{item?.name_group_es | uppercase }}</strong>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+          <ng-container *ngFor="let offer of item.offers; let j = index">
 
-        <ng-container *ngFor="let offer of item.offers; let j = index">
+            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-around center">
 
-          <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-around center">
+              <span fxFlex="70">{{ j + 1 }}. {{offer?.name_offer_es}}</span>
 
-            <span fxFlex="70">{{ j + 1 }}. {{offer?.name_offer_es}}</span>
+              <mat-form-field appearance="outline" fxFlex="30">
+                <mat-label>Cantidad</mat-label>
+                <input matInput [formControlName]="offer.id.toString()" type="number" min="1">
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" fxFlex="30">
-              <mat-label>Cantidad</mat-label>
-              <input matInput formControlName="{{offer.id.toString()}}" type="number" min="1">
-            </mat-form-field>
+            </div>
 
-          </div>
+          </ng-container>
 
-        </ng-container>
+          <mat-action-row>
+            <button *ngIf="i > 0" mat-button color="warn" (click)="prevStep()">Atras</button>
+            <button mat-button color="primary" (click)="nextStep()" (opened)="setStep(i + 1)">Continuar</button>
+          </mat-action-row>
 
-        <mat-action-row>
-          <button *ngIf="i > 0" mat-button color="warn" (click)="prevStep()">Atras</button>
-          <button mat-button color="primary" (click)="nextStep()" (opened)="setStep(i + 1)">Continuar</button>
-        </mat-action-row>
+        </mat-expansion-panel>
 
-      </mat-expansion-panel>
+      </mat-accordion>
 
-    </mat-accordion>
+    </form>
+  </div>
 
-  </form>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
