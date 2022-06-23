@@ -18,6 +18,10 @@ export class OfferService {
     return this.http.get(`${environment.apiUrl}/offer${id ? '/' + id : ''}`);
   }
 
+  getNotDaily(id?: string): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/api/offer/not-daily`);
+  }
+
   datatable(page: number, per_page: number): Observable<any> {
     return this.http.get(`${environment.apiUrl}/offer?page=${page}&per_page=${per_page}`);
   }

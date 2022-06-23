@@ -95,7 +95,7 @@ export class OfferEditorComponent implements OnInit {
     fileReader.readAsDataURL(this.selectedFiles[0]);
   }
 
-  serverRequest(data) {    console.log(data)
+  serverRequest(data) {
     const response = this.offer ? this.offerService.update(data) : this.offerService.store(data);
 
     response.subscribe(resp=>{

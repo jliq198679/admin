@@ -34,18 +34,24 @@ export class DailyOfferEditorComponent implements OnInit {
     if(this.data) {
       this.loadCurrentDailyOffers();
     }
-
-
-
-    console.log(this.data)
   }
 
   loadGroupsData() {
-    this.offerGroupService.getGroupsWithOffers().subscribe(
-      response=>{
-        this.prepareOfferGroupList(response.data)
-      }
-    );
+    if(this.data) {
+      this.offerGroupService.getGroupsWithOffers().subscribe(
+        response=>{
+          this.prepareOfferGroupList(response.data)
+        }
+      );
+    }
+    else {
+      this.offerService.getNotDaily().subscribe(
+        response=>{
+          this.mainOfferGroups = response;
+          this.createControls()
+        }
+      );
+    }
   }
 
   loadCurrentDailyOffers() {
@@ -85,7 +91,10 @@ export class DailyOfferEditorComponent implements OnInit {
     }
 
     this.mainOfferGroups = Object.keys(mainOfferGroups).map(key=>{ return mainOfferGroups[key] });
-    console.log(this.mainOfferGroups)
+    this.createControls();
+  }
+
+  createControls() {
     for(let mainOffer of this.mainOfferGroups) {
       for(let offer of mainOffer.offers) {
         this.form.addControl(offer.id.toString(), new FormControl(null));
