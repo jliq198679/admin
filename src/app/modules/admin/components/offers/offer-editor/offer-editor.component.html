@@ -58,9 +58,16 @@
         <div fxLayout="column" fxFlex>
 
           <mat-form-field appearance="standard">
-            <mat-label>Categoría/Subcategoría</mat-label>
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="main_group_offer_id" [compareWith]="compareWithFunc">
+              <mat-option *ngFor="let mainOfferGroup of mainOfferGroups" value="{{mainOfferGroup.id}}">{{mainOfferGroup.name_group_es}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard">
+            <mat-label>Subcategoría</mat-label>
             <mat-select formControlName="group_offer_id" [compareWith]="compareWithFunc">
-              <mat-option *ngFor="let offerGroup of offerGroups" value="{{offerGroup.id}}">{{offerGroup.name_group_es}}</mat-option>
+              <mat-option *ngFor="let subOfferGroup of subOfferGroups" value="{{subOfferGroup.id}}">{{subOfferGroup.name_group_es}}</mat-option>
             </mat-select>
           </mat-form-field>
 

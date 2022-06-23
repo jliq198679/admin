@@ -17,6 +17,10 @@ export class OfferGroupService {
     return this.http.get(`${environment.apiUrl}/group-offer${id ? '/' + id : ''}`);
   }
 
+  getSubcategories(id: string): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/group-offer/get-subCategory/${id}`);
+  }
+
   getGroupsWithOffers(): Observable<any> {
     return this.http.get(`${environment.apiUrl}/group-offer/offers`);
   }

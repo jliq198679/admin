@@ -18,7 +18,8 @@ export class OfferEditorComponent implements OnInit {
 
   form: FormGroup;
   offer: OfferInterface;
-  offerGroups: GroupOfferInterface[];
+  mainOfferGroups: GroupOfferInterface[];
+  subOfferGroups: GroupOfferInterface[] = [];
 
   offerImage: string | ArrayBuffer = defaultImg;
   selectedFiles
@@ -41,6 +42,7 @@ export class OfferEditorComponent implements OnInit {
       description_offer_en: [this.offer?.description_offer_en || null, [Validators.required]],
       price_cup: [this.offer?.price_cup || null, [Validators.required]],
       price_usd: [this.offer?.price_usd || null, [Validators.required]],
+      main_group_offer_id: [null, [Validators.required]],
       group_offer_id: [this.offer?.group_offer_id || null, [Validators.required]],
       url_imagen: [null]
     });
@@ -50,7 +52,13 @@ export class OfferEditorComponent implements OnInit {
     }
 
     this.offerGroupService.get().subscribe(resp=>{
-      this.offerGroups = resp.data;
+      this.mainOfferGroups = resp.data;
+    })
+
+    this.form.controls['main_group_offer_id'].valueChanges.subscribe(id=>{
+      this.offerGroupService.getSubcategories(id).subscribe(subCatResp=>{
+        this.subOfferGroups = subCatResp.data;
+      })
     })
   }
 
