@@ -56,42 +56,46 @@ export class DailyOfferEditorComponent implements OnInit {
 
   loadCurrentDailyOffers() {
     this.dailyOfferService.get().subscribe(
-      groups=>{
-        for(let group of groups) {
-          for(let offer of group.offers) {
-            this.form.controls[offer.id].setValue(offer.offer_daily.count_offer);
-          }
+      resp=>{
+        const dailyOffers = resp.data;
+
+        for(let offer of dailyOffers) {
+          this.form.controls[offer.id].setValue(offer.offer_daily.count_offer);
         }
       }
     );
   }
 
   prepareOfferGroupList(groupOffers: GroupOfferWithOffersInterface[]) {
+
     let mainOfferGroups = {};
-    let mainGroupCounter = 0;
 
     for(let go of groupOffers) {
+      if(go.category_id === null){
+        mainOfferGroups[go.id] = go;
+      }
+      else {
+        mainOfferGroups[go.category_id].offers = mainOfferGroups[go.category_id].offers.concat(go['offers'])
+      }
+    }
 
-      if(this.data) {
+    this.mainOfferGroups = Object.keys(mainOfferGroups).map(key=>{ return mainOfferGroups[key] });
+    this.createControls();
+
+    if(this.data) {
+      let mainGroupCounter = 0;
+
+      for(let go of this.mainOfferGroups) {
         const index = go.offers.findIndex(item=>item.id === this.data.id);
 
         if(index !== -1) {
           this.setStep(mainGroupCounter);
           //this.form.controls[this.data.id]. TODO: Poner el foco en el plato correspondiente
         }
-      }
-
-      if(go.category_id === null){
-        mainOfferGroups[go.id] = go;
         mainGroupCounter++;
       }
-      else {
-        mainOfferGroups[go.category_id].offers.concat(go['offers'])
-      }
-    }
 
-    this.mainOfferGroups = Object.keys(mainOfferGroups).map(key=>{ return mainOfferGroups[key] });
-    this.createControls();
+    }
   }
 
   createControls() {
