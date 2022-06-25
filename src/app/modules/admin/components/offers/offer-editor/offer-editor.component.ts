@@ -1,9 +1,9 @@
+import { OfferWithGroupOffersInterface } from './../../../interfaces/offer/offer-with-group-offers.interface';
 import { GroupOfferInterface } from './../../../interfaces/group-offer/group-offer.interface';
 import { OfferGroupService } from './../../../services/group-offer/offer-group.service';
 import { UploadService } from './../../../services/upload/upload.service';
 import { defaultImg } from './../../../tools/default.tool';
 import { OfferService } from './../../../services/offer';
-import { OfferInterface } from './../../../interfaces';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class OfferEditorComponent implements OnInit {
 
   form: FormGroup;
-  offer: OfferInterface;
+  offer: OfferWithGroupOffersInterface;
   mainOfferGroups: GroupOfferInterface[];
   subOfferGroups: GroupOfferInterface[] = [];
 
@@ -30,11 +30,13 @@ export class OfferEditorComponent implements OnInit {
               private offerGroupService: OfferGroupService,
               private uploadService: UploadService,
               private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data?: OfferInterface) {
+              @Inject(MAT_DIALOG_DATA) public data?: OfferWithGroupOffersInterface) {
     this.offer = data;
   }
 
   ngOnInit(): void {
+    const main_group_offer_id = this.offer?.group_offer?.category_id || this.offer?.group_offer_id || null;
+
     this.form = this.fb.group({
       name_offer_es: [this.offer?.name_offer_es || null, [Validators.required]],
       name_offer_en: [this.offer?.name_offer_en || null, [Validators.required]],
@@ -42,8 +44,8 @@ export class OfferEditorComponent implements OnInit {
       description_offer_en: [this.offer?.description_offer_en || null, [Validators.required]],
       price_cup: [this.offer?.price_cup || null, [Validators.required]],
       price_usd: [this.offer?.price_usd || null, [Validators.required]],
-      main_group_offer_id: [null, [Validators.required]],
-      group_offer_id: [this.offer?.group_offer_id],
+      main_group_offer_id: [ main_group_offer_id, [Validators.required]],
+      group_offer_id: [this.offer?.group_offer_id || null],
       url_imagen: [null]
     });
 
@@ -55,10 +57,18 @@ export class OfferEditorComponent implements OnInit {
       this.mainOfferGroups = resp.data;
     })
 
+    if(this.offer && main_group_offer_id) {
+      this.loadSubcategories(main_group_offer_id.toString())
+    }
+
     this.form.controls['main_group_offer_id'].valueChanges.subscribe(id=>{
-      this.offerGroupService.getSubcategories(id).subscribe(subCatResp=>{
-        this.subOfferGroups = subCatResp.data;
-      })
+      this.loadSubcategories(id)
+    })
+  }
+
+  loadSubcategories(id: string) {
+    this.offerGroupService.getSubcategories(id).subscribe(subCatResp=>{
+      this.subOfferGroups = subCatResp.data;
     })
   }
 
@@ -71,10 +81,10 @@ export class OfferEditorComponent implements OnInit {
       if(data.url_imagen === null) {
         delete data.url_imagen
       }
+    }
 
-      if(!data.group_offer_id) {
-        data.group_offer_id = data.main_group_offer_id;
-      }
+    if(!data.group_offer_id) {
+      data.group_offer_id = data.main_group_offer_id;
     }
 
     if(this.selectedFiles) {
