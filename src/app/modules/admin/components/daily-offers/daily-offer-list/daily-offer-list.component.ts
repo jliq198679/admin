@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { OfferInterface, GroupOfferInterface } from './../../../interfaces';
+import { OfferInterface, GroupOfferInterface, OfferWithGroupOffersInterface } from './../../../interfaces';
 import { DailyOfferEditorComponent } from './../daily-offer-editor/daily-offer-editor.component';
 import { defaultImg } from './../../../tools/default.tool';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -128,5 +128,9 @@ export class DailyOfferListComponent implements OnInit {
   }
 
   compareWithFunc = (a: any, b: any) => a == b;
+
+  categoryName(offer: OfferWithGroupOffersInterface) {
+    return offer.group_offer.category_id ? offer.group_offer.category.name_group_es + '/' + offer.group_offer.name_group_es : offer.group_offer.name_group_es;
+  }
 
 }
