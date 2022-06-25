@@ -43,7 +43,7 @@ export class OfferEditorComponent implements OnInit {
       price_cup: [this.offer?.price_cup || null, [Validators.required]],
       price_usd: [this.offer?.price_usd || null, [Validators.required]],
       main_group_offer_id: [null, [Validators.required]],
-      group_offer_id: [this.offer?.group_offer_id || null, [Validators.required]],
+      group_offer_id: [this.offer?.group_offer_id],
       url_imagen: [null]
     });
 
@@ -70,6 +70,10 @@ export class OfferEditorComponent implements OnInit {
 
       if(data.url_imagen === null) {
         delete data.url_imagen
+      }
+
+      if(!data.group_offer_id) {
+        data.group_offer_id = data.main_group_offer_id;
       }
     }
 

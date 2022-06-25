@@ -4,6 +4,28 @@
   <div class="flex-item">
     <h2 class="table-title"><mat-icon>food_bank</mat-icon><span>Platillos</span></h2>
   </div>
+
+  <div class="flex-item">
+    <form [formGroup]="filterForm">
+      <div fxLayout="row" fxFlex fxLayoutGap="5px" fxLayoutAlign="space-around center">
+        <span>Filtrar:</span>
+        <mat-form-field appearance="outline">
+          <mat-label>Categoría</mat-label>
+          <mat-select formControlName="main_group_offer_id" [compareWith]="compareWithFunc">
+            <mat-option *ngFor="let mainOfferGroup of mainOfferGroups" value="{{mainOfferGroup.id}}">{{mainOfferGroup.name_group_es}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Subcategoría</mat-label>
+          <mat-select formControlName="sub_group_offer_id" [compareWith]="compareWithFunc">
+            <mat-option *ngFor="let subOfferGroup of subOfferGroups" value="{{subOfferGroup.id}}">{{subOfferGroup.name_group_es}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
   <div class="flex-item">
     <button mat-button class="menu-button" (click)="showModal()">
       <mat-icon>add</mat-icon>

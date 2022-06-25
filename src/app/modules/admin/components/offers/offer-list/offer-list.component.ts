@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -5,9 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { defaultImg } from './../../../tools';
-import { OfferInterface } from './../../../interfaces';
+import { GroupOfferInterface, OfferInterface } from './../../../interfaces';
 import { OfferEditorComponent } from '../offer-editor';
-import { ConfirmDialogService, OfferService, SpecialOfferService } from './../../../services';
+import { ConfirmDialogService, OfferGroupService, OfferService, SpecialOfferService } from './../../../services';
 
 @Component({
   selector: 'app-offer-list',
@@ -15,6 +16,10 @@ import { ConfirmDialogService, OfferService, SpecialOfferService } from './../..
   styleUrls: ['./offer-list.component.scss']
 })
 export class OfferListComponent implements OnInit {
+
+  filterForm: FormGroup;
+  mainOfferGroups: GroupOfferInterface[] = [ { id: -1 , name_group_es: "Todas" }];
+  subOfferGroups: GroupOfferInterface[] = [ { id: -1 , name_group_es: "Todas" }];
 
   offers: OfferInterface[] = [];
   displayedColumns: string[] = ['position', 'image', 'name_offer_es', 'group_offer_id', 'price_cup', 'price_usd', 'is_promotion', 'operations'];
@@ -31,13 +36,32 @@ export class OfferListComponent implements OnInit {
   constructor(private offerService: OfferService,
               public dialog: MatDialog,
               private snackBar: MatSnackBar,
+              private fb: FormBuilder,
+              private offerGroupService: OfferGroupService,
               private specialOfferService: SpecialOfferService,
               private confirmDialogService: ConfirmDialogService) {
 
   }
 
   ngOnInit(): void {
-      this.loadDatatable(1, 7);
+    this.filterForm = this.fb.group({
+      main_group_offer_id: [-1],
+      sub_group_offer_id: [-1],
+      search: ['']
+    });
+
+    this.offerGroupService.get().subscribe(resp=>{
+      this.mainOfferGroups = this.mainOfferGroups.concat(resp.data);
+    })
+
+    this.filterForm.controls['main_group_offer_id'].valueChanges.subscribe(id=>{
+      this.offerGroupService.getSubcategories(id).subscribe(subCatResp=>{
+        this.subOfferGroups = [ { id: -1 , name_group_es: "Todas" }];
+        this.subOfferGroups = this.subOfferGroups.concat(subCatResp.data);
+      })
+    })
+
+    this.loadDatatable(1, 7);
   }
 
   ngAfterViewInit() {
@@ -101,5 +125,7 @@ export class OfferListComponent implements OnInit {
       })
     }
   }
+
+  compareWithFunc = (a: any, b: any) => a == b;
 
 }

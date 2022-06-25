@@ -1,9 +1,10 @@
-import { OfferInterface } from './../../../interfaces';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { OfferInterface, GroupOfferInterface } from './../../../interfaces';
 import { DailyOfferEditorComponent } from './../daily-offer-editor/daily-offer-editor.component';
 import { defaultImg } from './../../../tools/default.tool';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConfirmDialogService, DailyOfferService, OfferService } from './../../../services';
+import { ConfirmDialogService, DailyOfferService, OfferGroupService } from './../../../services';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -15,6 +16,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./daily-offer-list.component.scss']
 })
 export class DailyOfferListComponent implements OnInit {
+
+  filterForm: FormGroup;
+  mainOfferGroups: GroupOfferInterface[] = [ { id: -1 , name_group_es: "Todas" }];
+  subOfferGroups: GroupOfferInterface[] = [ { id: -1 , name_group_es: "Todas" }];
 
   offers: OfferInterface[] = [];
   displayedColumns: string[] = ['position', 'image', 'name_offer_es', 'group_offer_id', 'count_offer', 'operations'];
@@ -31,12 +36,31 @@ export class DailyOfferListComponent implements OnInit {
   constructor(private dailyOfferService: DailyOfferService,
               public dialog: MatDialog,
               private snackBar: MatSnackBar,
+              private offerGroupService: OfferGroupService,
+              private fb: FormBuilder,
               private confirmDialogService: ConfirmDialogService) {
 
   }
 
   ngOnInit(): void {
-      this.loadDatatable(1, 7);
+    this.filterForm = this.fb.group({
+      main_group_offer_id: [-1],
+      sub_group_offer_id: [-1],
+      search: ['']
+    });
+
+    this.offerGroupService.get().subscribe(resp=>{
+      this.mainOfferGroups = this.mainOfferGroups.concat(resp.data);
+    })
+
+    this.filterForm.controls['main_group_offer_id'].valueChanges.subscribe(id=>{
+      this.offerGroupService.getSubcategories(id).subscribe(subCatResp=>{
+        this.subOfferGroups = [ { id: -1 , name_group_es: "Todas" }];
+        this.subOfferGroups = this.subOfferGroups.concat(subCatResp.data);
+      })
+    })
+
+    this.loadDatatable(1, 7);
   }
 
   ngAfterViewInit() {
@@ -102,5 +126,7 @@ export class DailyOfferListComponent implements OnInit {
       })*/
     }
   }
+
+  compareWithFunc = (a: any, b: any) => a == b;
 
 }
