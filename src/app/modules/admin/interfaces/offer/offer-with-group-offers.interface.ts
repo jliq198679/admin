@@ -1,6 +1,6 @@
-import { GroupOfferInterface } from '../group-offer/group-offer.interface';
+import { GroupOfferWithParentInterface } from '../group-offer';
 import { OfferInterface } from "./offer.interface";
 
 export interface OfferWithGroupOffersInterface extends OfferInterface {
-  group_offer: GroupOfferInterface;
+  group_offer: GroupOfferWithParentInterface;
 }

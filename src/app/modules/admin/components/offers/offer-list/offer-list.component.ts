@@ -1,3 +1,4 @@
+import { OfferWithGroupOffersInterface } from './../../../interfaces/offer/offer-with-group-offers.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -127,5 +128,9 @@ export class OfferListComponent implements OnInit {
   }
 
   compareWithFunc = (a: any, b: any) => a == b;
+
+  categoryName(offer: OfferWithGroupOffersInterface) {
+    return offer.group_offer.category_id ? offer.group_offer.category.name_group_es + '/' + offer.group_offer.name_group_es : offer.group_offer.name_group_es;
+  }
 
 }
