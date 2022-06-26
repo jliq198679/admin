@@ -16,8 +16,17 @@ export class DailyOfferService {
     return this.http.get(`${environment.apiUrl}/api/offer-daily${id ? '/' + id : ''}`);
   }
 
-  datatable(page: number, per_page: number): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/offer-daily?page=${page}&per_page=${per_page}`);
+  datatable(page: number, per_page: number, filters?: any): Observable<any> {
+    let query = '';
+
+    if(filters?.category_id) {
+      query += `&category_id=${filters.category_id}`;
+    }
+
+    if(filters?.subCategory_id) {
+      query += `&subCategory_id=${filters.subCategory_id}`;
+    }
+    return this.http.get(`${environment.apiUrl}/offer-daily?page=${page}&per_page=${per_page}${query}`);
   }
 
   store(offers: any): Observable<any> {

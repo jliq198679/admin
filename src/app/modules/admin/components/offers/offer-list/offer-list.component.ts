@@ -53,14 +53,38 @@ export class OfferListComponent implements OnInit {
 
     this.offerGroupService.get().subscribe(resp=>{
       this.mainOfferGroups = this.mainOfferGroups.concat(resp.data);
-    })
+    });
 
     this.filterForm.controls['main_group_offer_id'].valueChanges.subscribe(id=>{
       this.offerGroupService.getSubcategories(id).subscribe(subCatResp=>{
         this.subOfferGroups = [ { id: -1 , name_group_es: "Todas" }];
         this.subOfferGroups = this.subOfferGroups.concat(subCatResp.data);
-      })
-    })
+        this.filterForm.controls['sub_group_offer_id'].setValue(-1);
+
+        if(id == -1) {
+          this.loadDatatable(1, 7);
+        }
+        else {
+          this.loadDatatable(1, 7, { category_id: id });
+        }
+      });
+    });
+
+    this.filterForm.controls['sub_group_offer_id'].valueChanges.subscribe(id=>{
+      const mainId = this.filterForm.controls['main_group_offer_id'].value;
+
+      if(id == -1 && mainId != -1) {
+        this.loadDatatable(1, 7, { category_id: mainId});
+      }
+
+      if(id == -1 && mainId != -1) {
+        this.loadDatatable(1, 7, { category_id: mainId});
+      }
+
+      if(id != -1 && mainId != -1) {
+        this.loadDatatable(1, 7, { subCategory_id: id });
+      }
+    });
 
     this.loadDatatable(1, 7);
   }
@@ -82,7 +106,7 @@ export class OfferListComponent implements OnInit {
   }
 
   async delete(data?: OfferInterface) {
-    const msg = "¿Desea eliminar el plato seleccionado?"
+    const msg = "¿Desea eliminar el plato seleccionado?";
     const confirm = await this.confirmDialogService.confirmDialog(msg);
 
     if(confirm) {
@@ -90,12 +114,12 @@ export class OfferListComponent implements OnInit {
         const msg = `Plato eliminado de forma correcta`;
         this.snackBar.open(msg, 'X');
         this.loadDatatable(1, 7);
-      })
+      });
     }
   }
 
-  loadDatatable(pageIndex: number, pageSize: number) {
-    this.offerService.datatable(pageIndex, pageSize).subscribe(
+  loadDatatable(pageIndex: number, pageSize: number, filters?: any) {
+    this.offerService.datatable(pageIndex, pageSize, filters).subscribe(
       response=>{
         this.dataSource = new MatTableDataSource<OfferInterface>(response.data);
         this.pageIndex = response.current_page - 1;
@@ -117,13 +141,13 @@ export class OfferListComponent implements OnInit {
       this.specialOfferService.store(element.id).subscribe(()=>{
         const msg = `Plato añadido a la oferta especial`;
         this.snackBar.open(msg, 'X');
-      })
+      });
     }
     else {
       this.specialOfferService.delete(element.id).subscribe(()=>{
         const msg = `El plato ya no forma parte de oferta especial`;
         this.snackBar.open(msg, 'X');
-      })
+      });
     }
   }
 

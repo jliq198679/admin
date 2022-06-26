@@ -57,8 +57,33 @@ export class DailyOfferListComponent implements OnInit {
       this.offerGroupService.getSubcategories(id).subscribe(subCatResp=>{
         this.subOfferGroups = [ { id: -1 , name_group_es: "Todas" }];
         this.subOfferGroups = this.subOfferGroups.concat(subCatResp.data);
+
+        this.filterForm.controls['sub_group_offer_id'].setValue(-1);
+
+        if(id == -1) {
+          this.loadDatatable(1, 7);
+        }
+        else {
+          this.loadDatatable(1, 7, { category_id: id });
+        }
       })
     })
+
+    this.filterForm.controls['sub_group_offer_id'].valueChanges.subscribe(id=>{
+      const mainId = this.filterForm.controls['main_group_offer_id'].value;
+
+      if(id == -1 && mainId != -1) {
+        this.loadDatatable(1, 7, { category_id: mainId});
+      }
+
+      if(id == -1 && mainId != -1) {
+        this.loadDatatable(1, 7, { category_id: mainId});
+      }
+
+      if(id != -1 && mainId != -1) {
+        this.loadDatatable(1, 7, { subCategory_id: id });
+      }
+    });
 
     this.loadDatatable(1, 7);
   }
@@ -92,8 +117,8 @@ export class DailyOfferListComponent implements OnInit {
     }
   }
 
-  loadDatatable(pageIndex: number, pageSize: number) {
-    this.dailyOfferService.datatable(pageIndex, pageSize).subscribe(
+  loadDatatable(pageIndex: number, pageSize: number, filters?: any) {
+    this.dailyOfferService.datatable(pageIndex, pageSize, filters).subscribe(
       response=>{
         this.dataSource = new MatTableDataSource<OfferInterface>(response.data);
         this.pageIndex = response.current_page - 1;
