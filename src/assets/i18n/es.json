@@ -1,0 +1,33 @@
+{
+    "navbar_menu": {
+        "specials": "ESPECIALES",
+        "about": "HISTORIA",
+        "menu": "MENU",
+        "chef": "CHEF",
+        "contact": "CONTACTO",
+        "lang_translate": "Idioma" 
+    },
+    "presentation": {
+        "reservations_phone": "Reservaciones" 
+    },
+    "specials": {
+        "title": "OFERTAS ESPECIALES"
+    },
+    "about": {
+        "title": "NUESTRA HISTORIA"
+    },
+    "chef": {
+        "title": "CONOCE A NUESTRO CHEF"
+    },
+    "contact": {
+        "reservations": "Reservaciones",
+        "please_call": "Por favor llama",
+        "address": "DIRECCIÓN",
+        "openings_hours": "HORARIO DE APERTURA",
+        "send_us_a_message": "MANDANOS UN MENSAJE",
+        "form_name": "Nombre",
+        "form_email": "Correo",
+        "form_message": "Mensaje",
+        "send_message": "ENVIAR MENSAJE"
+    }
+}

@@ -1,0 +1,14 @@
+<div class="container text-center">
+    <div class="section-title">
+      <h2>{{'specials.title' | translate }}</h2>
+    </div>
+    <div class="row special-offers-list">
+      <div class="col-xs-12 col-sm-4" *ngFor="let offer of specialOffer">
+        <div class="features-item">
+          <h3>{{name(offer)}}</h3>
+          <img src="{{offer.url_imagen}}" class="img-responsive" alt="Imagen del platillo">
+          <p>{{description(offer)}}</p>
+        </div>
+      </div>
+    </div>
+</div>

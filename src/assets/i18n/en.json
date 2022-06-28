@@ -1,0 +1,33 @@
+{
+    "navbar_menu": {
+        "specials": "SPECIALS",
+        "about": "ABOUT",
+        "menu": "MENU",
+        "chef": "CHEF",
+        "contact": "CONTACT",
+        "lang_translate": "Languague"
+    },
+    "presentation": {
+        "reservations_phone": "Reservations" 
+    },
+    "specials": {
+        "title": "OUR SPECIALS"
+    },
+    "about": {
+        "title": "OUR STORY"
+    },
+    "chef": {
+        "title": "MEET OUR CHEF"
+    },
+    "contact": {
+        "reservations": "Reservations",
+        "please_call": "Please call",
+        "address": "ADDRESS",
+        "openings_hours": "OPENING HOURS",
+        "send_us_a_message": "SEND US A MESSAGE",
+        "form_name": "Name",
+        "form_email": "Email",
+        "form_message": "Message",
+        "send_message": "SEND MESSAGE"
+    }
+}
