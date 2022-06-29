@@ -20,8 +20,28 @@ export class DailyOfferService {
     return this.http.get(`${environment.apiUrl}/offer-daily/category`);
   }
 
-  getSubCategory(category_id): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/offer-daily/get-subCategory/${category_id}`);
+  getSubCategoryOffers(subCategory_id?: any): Observable<any> {
+    let query = '';
+
+    if(subCategory_id) {
+      query += `?subCategory_id=${subCategory_id}`;
+    }
+
+    return this.http.get(`${environment.apiUrl}/offer-daily${query}`);
+  }
+
+  getSubCategory(category_id: string, filters?: any): Observable<any> {
+    let query = '';
+
+    if(filters?.category_id) {
+      query += `?category_id=${filters.category_id}`;
+    }
+
+    if(filters?.subCategory_id) {
+      query += `?subCategory_id=${filters.subCategory_id}`;
+    }
+
+    return this.http.get(`${environment.apiUrl}/offer-daily/get-subCategory/${category_id}${query}`);
   }
 
   datatable(page: number, per_page: number, filters?: any): Observable<any> {

@@ -1,3 +1,7 @@
+import { DailyOfferInterface } from './../../../admin/interfaces/daily-offer/daily-offer.interface';
+import { DailyOfferService } from './../../services/daily-offer/daily-offer.service';
+import { AdminMenuCartComponent } from './../menu-cart/menu-cart.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FrameWebIdEnum } from '../../enums';
@@ -12,6 +16,11 @@ declare var $: any;
 })
 export class ContainerComponent implements OnInit {
 
+  categories: any[]
+  subcategories: any[][] = []
+  dailyOffers: DailyOfferInterface[][][] = [];
+
+
   headerFrameWeb: FrameWebGetInterface;
   contactFrameWeb: FrameWebGetInterface;
   ourStoryFrameWeb: FrameWebGetInterface;
@@ -19,16 +28,19 @@ export class ContainerComponent implements OnInit {
 
   constructor(public translate: TranslateService,
               public translateService: TranslateService,
+              private dailyOfferService: DailyOfferService,
+              public dialog: MatDialog,
               private frameWebService: FrameWebService) { }
 
   ngOnInit(): void {
     this.loadFrameWebList();
-
+/*
     $('document').ready(function() {
       setTimeout(() => {
         $('#exampleModal').modal('show')
       }, 2000);
-    });
+    });*/
+    this.showMenu()
   }
 
   switchLang(lang: 'es' | 'en') {
@@ -60,7 +72,38 @@ export class ContainerComponent implements OnInit {
     return this.translateService.currentLang;
   }
 
-  showMenuModal() {
-    alert("YESS")
+  showModal(data?: any/*OfferInterface*/) {
+    const dialogRef = this.dialog.open(AdminMenuCartComponent, {
+      width: '45%',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+
+    });
   }
+
+  async showMenu() {
+    this.dailyOfferService.getCategory().subscribe(categories=>{
+      this.categories = categories;
+
+      for(let category of categories) {
+        this.dailyOfferService.getSubCategory(category.id).subscribe(subcategories=>{
+          category['subcategories'] = subcategories;
+
+          for(let subcategory of subcategories) {
+            this.dailyOfferService.getSubCategoryOffers(subcategory.id).subscribe(dailyOffers=>{
+              console.log(dailyOffers)
+              subcategory['dailyOffers'] = dailyOffers.data;
+            })
+          }
+        })
+      }
+
+      if(categories.length > 0) {
+        this.showModal(categories)
+      }
+    })
+  }
+
 }

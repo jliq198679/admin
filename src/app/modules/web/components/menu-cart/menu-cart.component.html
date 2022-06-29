@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>MENU</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="accordion-daily-offer">
+
+
+      <mat-accordion class="example-headers-align">
+
+        <mat-expansion-panel *ngFor="let category of categories; let i = index" [expanded]="step === i" (opened)="setStep(i, category.id)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="row-category">
+              <strong>
+                {{name_group(category) | uppercase }}
+              </strong>
+              <span class="badge badge-light">{{category?.count_daily}}</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngFor="let subcategory of category['subcategories']; let j = index">
+            <strong>{{name_group(subcategory)}}</strong>
+
+            <mat-divider class="daily-offers-divider"></mat-divider>
+
+            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+              <div *ngFor="let dailyOffer of subcategory['dailyOffers']" class="daily-offers-block" fxFlex="50">
+
+                <mat-card class="example-card">
+                  <mat-card-header>
+                    <!--
+                    <div mat-card-avatar class="example-header-image"></div>
+                    -->
+                    <mat-card-title>{{name_offer(dailyOffer)}}</mat-card-title>
+                    <mat-card-subtitle>{{dailyOffer.price_cup}} CUP - {{dailyOffer.price_usd}} USD</mat-card-subtitle>
+                  </mat-card-header>
+                  <img mat-card-image src="{{dailyOffer?.url_imagen}}" alt="Photo of a Shiba Inu">
+                  <mat-card-content>
+                    <p>
+                      {{description_offer(dailyOffer)}}
+                    </p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                  </mat-card-actions>
+                </mat-card>
+    <!--
+                <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-around center">
+
+                  <span fxFlex="70">{{ j + 1 }}. {{offer?.name_offer_es}}</span>
+
+                  <mat-form-field appearance="outline" fxFlex="30">
+                    <mat-label>Cantidad</mat-label>
+                    <input matInput [formControlName]="offer.id.toString()" type="number" min="1">
+                  </mat-form-field>
+
+                </div>
+    -->
+              </div>
+            </div>
+
+
+          </div>
+
+          <mat-action-row>
+            <button *ngIf="i > 0" mat-button color="warn" (click)="prevStep()">Atras</button>
+            <button mat-button color="primary" (click)="nextStep()" (opened)="setStep(i + 1)">Continuar</button>
+          </mat-action-row>
+
+        </mat-expansion-panel>
+
+      </mat-accordion>
+  </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button cdkFocusInitial  (click)="save()">Aceptar</button><!--[disabled]="!form.valid"-->
+</mat-dialog-actions>
+

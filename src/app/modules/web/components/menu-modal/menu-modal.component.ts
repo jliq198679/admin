@@ -19,7 +19,6 @@ export class MenuModalComponent implements OnInit {
 
   showSubcategories(id) {
     this.dailyOfferService.getSubCategory(id).subscribe(categories=>{
-      console.log(categories)
       this.categories = categories;
       this.isSubcategory = true;
     })
@@ -32,7 +31,6 @@ export class MenuModalComponent implements OnInit {
 
   loadCategories() {
     this.dailyOfferService.getCategory().subscribe(categories=>{
-      console.log(categories)
       this.categories = categories;
     })
   }

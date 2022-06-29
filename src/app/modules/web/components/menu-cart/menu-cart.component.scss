@@ -1,0 +1,41 @@
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+::ng-deep app-daily-offer-editor .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.accordion-daily-offer {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+app-daily-offer-editor h2 {
+  margin-bottom: 6px;
+}
+
+.row-category {
+  display: flex;
+  justify-content: space-between;
+}
+
+.daily-offers-divider {
+  padding-bottom: 10px;
+}
+
+.daily-offers-block {
+  padding-bottom: 10px;
+}
+
+

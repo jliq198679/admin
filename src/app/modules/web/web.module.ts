@@ -1,3 +1,5 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebRoutingModule } from './web-routing.module';
@@ -10,7 +12,7 @@ import { ChefComponent } from './components/chef/chef.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MenuModalComponent } from './components';
+import { AdminMenuCartComponent, MenuModalComponent } from './components';
 import { TranslateModule } from '@ngx-translate/core';
 
 
@@ -25,11 +27,14 @@ import { TranslateModule } from '@ngx-translate/core';
     ContactComponent,
     GalleryComponent,
     FooterComponent,
-    MenuModalComponent
+    MenuModalComponent,
+    AdminMenuCartComponent
   ],
   imports: [
     CommonModule,
     WebRoutingModule,
+    SharedModule,
+    FlexLayoutModule,
     TranslateModule.forChild()
   ]
 })
