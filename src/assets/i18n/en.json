@@ -8,7 +8,7 @@
         "lang_translate": "Languague"
     },
     "presentation": {
-        "reservations_phone": "Reservations" 
+        "reservations_phone": "Reservations"
     },
     "specials": {
         "title": "OUR SPECIALS"
@@ -29,5 +29,10 @@
         "form_email": "Email",
         "form_message": "Message",
         "send_message": "SEND MESSAGE"
+    },
+    "menu-offer-item": {
+      "eval-rate": "Assess the quality",
+      "share": "Share with my friends and family",
+      "add-to-car": "Add to cart"
     }
 }

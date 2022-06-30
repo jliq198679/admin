@@ -5,10 +5,10 @@
         "menu": "MENU",
         "chef": "CHEF",
         "contact": "CONTACTO",
-        "lang_translate": "Idioma" 
+        "lang_translate": "Idioma"
     },
     "presentation": {
-        "reservations_phone": "Reservaciones" 
+        "reservations_phone": "Reservaciones"
     },
     "specials": {
         "title": "OFERTAS ESPECIALES"
@@ -29,5 +29,10 @@
         "form_email": "Correo",
         "form_message": "Mensaje",
         "send_message": "ENVIAR MENSAJE"
+    },
+    "menu-offer-item": {
+      "eval-rate": "Evaluar la calidad",
+      "share": "Compartir con mis amigos y familiares",
+      "add-to-car": "Añadir a la compra"
     }
 }

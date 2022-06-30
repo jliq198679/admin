@@ -1,0 +1,33 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <!--
+    <div mat-card-avatar class="example-header-image"></div>
+    -->
+    <mat-card-title>{{name_offer(dailyOffer)}}</mat-card-title>
+    <mat-card-subtitle>{{dailyOffer.price_cup}} CUP - {{dailyOffer.price_usd}} USD</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{dailyOffer?.url_imagen}}" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p></p>
+  </mat-card-content>
+  <mat-card-actions class="btns-offer-panel">
+    <button mat-button
+        (click)="evalRateOffer(dailyOffer)"
+        matTooltip="{{'menu-offer-item.eval-rate' | translate }}"
+        class="btn-offer-action">
+        <mat-icon>hotel_class</mat-icon>
+    </button>
+    <button mat-button
+        (click)="shareOffer(dailyOffer)"
+        matTooltip="{{'menu-offer-item.share' | translate }}"
+        class="btn-offer-action">
+        <mat-icon>share</mat-icon>
+    </button>
+    <button mat-button
+       (click)="addOfferToCar(dailyOffer)"
+       matTooltip="{{'menu-offer-item.add-to-car' | translate }}"
+       class="btn-offer-action">
+       <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -18,8 +18,9 @@ export class AdminMenuCartComponent implements OnInit {
   step = -1;
 
   constructor(public dialogRef: MatDialogRef<AdminMenuCartComponent>,
-              private dailyOfferService: DailyOfferService,
               public translateService: TranslateService,
+              private dailyOfferService: DailyOfferService,
+
               /*private offerService: OfferService,
               private offerGroupService: OfferGroupService,
               private dailyOfferService: DailyOfferService,*/
@@ -49,22 +50,12 @@ export class AdminMenuCartComponent implements OnInit {
     this.step--;
   }
 
-
-
-  get lang() {
-    return this.translateService.currentLang;
-  }
-
   name_group(category): string {
     return (this.lang === 'es' ? category.name_group_es : category.name_group_en);
   }
 
-  name_offer(offer): string {
-    return (this.lang === 'es' ? offer.name_offer_es : offer.name_offer_en);
-  }
-
-  description_offer(offer): string {
-    return (this.lang === 'es' ? offer.description_offer_es : offer.description_offer_en);
+  get lang() {
+    return this.translateService.currentLang;
   }
 
 

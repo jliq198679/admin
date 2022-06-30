@@ -93,7 +93,6 @@ export class ContainerComponent implements OnInit {
 
           for(let subcategory of subcategories) {
             this.dailyOfferService.getSubCategoryOffers(subcategory.id).subscribe(dailyOffers=>{
-              console.log(dailyOffers)
               subcategory['dailyOffers'] = dailyOffers.data;
             })
           }

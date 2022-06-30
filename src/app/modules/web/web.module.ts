@@ -1,3 +1,4 @@
+import { MenuOfferCardComponent } from './components/offer-card/offer-card.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -28,7 +29,8 @@ import { TranslateModule } from '@ngx-translate/core';
     GalleryComponent,
     FooterComponent,
     MenuModalComponent,
-    AdminMenuCartComponent
+    AdminMenuCartComponent,
+    MenuOfferCardComponent
   ],
   imports: [
     CommonModule,
