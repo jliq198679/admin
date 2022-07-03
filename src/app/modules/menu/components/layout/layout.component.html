@@ -10,13 +10,15 @@
   </menu-summary>
 </mat-menu>
 
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container class="sidenav-category">
   <mat-sidenav mode="side" opened fxHide.xs>
+    <ng-container *ngIf="dailyOfferItems.length > 0">
       <menu-summary
           *ngFor="let category of dailyOfferItems; let i = index"
           [category]="category"
           (selected)="onCategorySelected(i)">
       </menu-summary>
+    </ng-container>
   </mat-sidenav>
   <mat-sidenav-content>
       <menu-category [category]="dailyOfferItems[categorySelectedIndex]"></menu-category>

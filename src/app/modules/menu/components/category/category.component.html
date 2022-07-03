@@ -1,18 +1,24 @@
-<mat-card>
-  <mat-card-title>{{name_group(category) | uppercase }}</mat-card-title>
-  <div *ngFor="let subcategory of category?.subs_category">
-    <strong>{{name_group(subcategory) | uppercase }}</strong>
-    <mat-divider class="daily-offers-divider"></mat-divider>
-    <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start center">
+<mat-card class="category-card">
+  <mat-card-title fxLayoutAlign="start center">
+    <span>{{name_group(category) | uppercase }}</span>
+    <span class="badge badge-light">{{category?.offers_count}}</span>
+  </mat-card-title>
+  <mat-divider></mat-divider>
+  <div *ngFor="let subcategory of category?.subs_category" class="subcategory-container">
+    <button mat-stroked-button class="btn-subcategory-sep" color="primary">
+      <strong>{{name_group(subcategory) | uppercase }} </strong>
+      <span class="badge badge-light">{{subcategory?.offers_count}}</span>
+    </button>
+    <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start center" class="cards-container">
       <div
           *ngFor="let dailyOffer of subcategory.offers"
           class="daily-offers-block"
-          fxFlex="20"
-          fxFlex.md="25"
-          fxFlex.sm="33"
-          fxFlex.xs="50"
+          fxFlex="25"
+          fxFlex.md="33"
+          fxFlex.sm="50"
+          fxFlex.xs="100"
           fxLayout="column"
-          style="padding: 5px;">
+         >
         <menu-offer-card [dailyOffer]="dailyOffer"></menu-offer-card>
       </div>
     </div>
