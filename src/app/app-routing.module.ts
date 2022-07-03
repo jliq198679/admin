@@ -2,14 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  /*{
+  {
     path: '',
-    redirectTo: 'web',
+    redirectTo: 'menu',
     pathMatch: 'full'
-  },*/
+  },
   {
     path: '',
     loadChildren: () => import('./modules/web/web.module').then(m => m.WebModule)
+  },
+  {
+    path: 'menu',
+    loadChildren: () => import('./modules/menu/menu.module').then(m => m.MenuModule)
   },
   {
     path: 'admin',

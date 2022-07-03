@@ -1,7 +1,7 @@
-import { StarRatingColor } from './../../../shared/components';
-import { MenuOfferItemInterface } from './../../../shared/interfaces';
-import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { StarRatingColor } from '../../../shared/components';
+import { MenuOfferItemInterface } from '../../../shared/interfaces';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'menu-offer-card',

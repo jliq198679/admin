@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-title>{{name_group(category) | uppercase }}</mat-card-title>
+  <div *ngFor="let subcategory of category['subs_category']">
+    <strong>{{name_group(subcategory) | uppercase }}</strong>
+    <mat-divider class="daily-offers-divider"></mat-divider>
+    <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <div
+          *ngFor="let dailyOffer of subcategory.offers"
+          class="daily-offers-block"
+          fxFlex="20"
+          fxFlex.md="25"
+          fxFlex.sm="33"
+          fxFlex.xs="50"
+          fxLayout="column"
+          style="padding: 5px;">
+        <menu-offer-card [dailyOffer]="dailyOffer"></menu-offer-card>
+      </div>
+    </div>
+  </div>
+</mat-card>
+

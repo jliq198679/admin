@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="#">
+    <mat-icon>home</mat-icon>
+    Option name
+  </button>
+</mat-menu>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened fxHide.xs>Sidenav content</mat-sidenav>
+  <mat-sidenav-content>
+      <menu-category
+          *ngFor="let category of dailyOfferItems"
+          [category]="category">
+      </menu-category>
+  </mat-sidenav-content>
+</mat-sidenav-container>
