@@ -8,14 +8,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MenuLayoutComponent,
   MenuCategoryComponent,
-  MenuOfferCardComponent
+  MenuOfferCardComponent,
+  MenuSummaryComponent
 } from './components';
 
 @NgModule({
   declarations: [
     MenuLayoutComponent,
     MenuCategoryComponent,
-    MenuOfferCardComponent
+    MenuOfferCardComponent,
+    MenuSummaryComponent
   ],
   imports: [
     CommonModule,

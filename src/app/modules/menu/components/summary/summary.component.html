@@ -1,0 +1,6 @@
+<button mat-menu-item (click)="navigateToSection('category-' + category.id)">
+  <strong>
+    {{name_group(category) | uppercase }}
+  </strong>
+  <span class="badge badge-light">{{category?.offers_count}}</span>
+</button>

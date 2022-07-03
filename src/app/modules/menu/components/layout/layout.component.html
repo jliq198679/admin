@@ -4,16 +4,21 @@
   </button>
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item routerLink="#">
-    <mat-icon>home</mat-icon>
-    Option name
-  </button>
+  <menu-summary
+      *ngFor="let category of dailyOfferItems"
+      [category]="category">
+  </menu-summary>
 </mat-menu>
 
 <mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened fxHide.xs>Sidenav content</mat-sidenav>
+  <mat-sidenav mode="side" opened fxHide.xs>
+      <menu-summary
+          *ngFor="let category of dailyOfferItems"
+          [category]="category">
+      </menu-summary>
+  </mat-sidenav>
   <mat-sidenav-content>
-      <menu-category
+      <menu-category id="{{'category-' + category.id}}"
           *ngFor="let category of dailyOfferItems"
           [category]="category">
       </menu-category>
