@@ -1,17 +1,32 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <!--
-    <div mat-card-avatar class="example-header-image"></div>
-    -->
-    <mat-card-title>{{name_offer(dailyOffer)}}</mat-card-title>
-    <mat-card-subtitle>{{dailyOffer.price_cup}} CUP - {{dailyOffer.price_usd}} USD</mat-card-subtitle>
+    <div fxLayout="column">
+        <mat-card-title>{{name_offer(dailyOffer)}}</mat-card-title>
+        <shared-star-rate
+            class="offer-star-rate"
+            [rating]="rating"
+            [starCount]="starCount"
+            [color]="starColor"
+            (ratingUpdated)="onRatingChanged($event)">
+        </shared-star-rate>
+    </div>
   </mat-card-header>
   <img mat-card-image src="{{dailyOffer?.url_imagen}}" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p></p>
-  </mat-card-content>
+
   <mat-card-actions class="btns-offer-panel">
+    <mat-card-subtitle>{{dailyOffer.price_cup}} CUP - {{dailyOffer.price_usd}} USD</mat-card-subtitle>
     <button mat-button
+       (click)="addOfferToCar(dailyOffer)"
+       matTooltip="{{'menu-offer-item.add-to-car' | translate }}"
+       class="btn-offer-action">
+       <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+
+  </mat-card-actions>
+</mat-card>
+
+<!--
+  <button mat-button
         (click)="evalRateOffer(dailyOffer)"
         matTooltip="{{'menu-offer-item.eval-rate' | translate }}"
         class="btn-offer-action">
@@ -23,11 +38,4 @@
         class="btn-offer-action">
         <mat-icon>share</mat-icon>
     </button>
-    <button mat-button
-       (click)="addOfferToCar(dailyOffer)"
-       matTooltip="{{'menu-offer-item.add-to-car' | translate }}"
-       class="btn-offer-action">
-       <mat-icon>add_shopping_cart</mat-icon>
-    </button>
-  </mat-card-actions>
-</mat-card>
+-->

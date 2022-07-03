@@ -1,3 +1,4 @@
+import { StarRatingColor } from './../../../shared/components';
 import { MenuOfferItemInterface } from './../../../shared/interfaces';
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,12 +10,22 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MenuOfferCardComponent implements OnInit {
 
-  @Input() dailyOffer: MenuOfferItemInterface
+  @Input() dailyOffer: MenuOfferItemInterface;
+
+  rating:number = 5;
+  starCount:number = 5;
+  starColor:StarRatingColor = StarRatingColor.accent;
+  starColorP:StarRatingColor = StarRatingColor.primary;
+  starColorW:StarRatingColor = StarRatingColor.warn;
 
   constructor(public translateService: TranslateService) { }
 
   ngOnInit(): void {
-    console.log(this.dailyOffer)
+  }
+
+  onRatingChanged(rating){
+    console.log(rating);
+    this.rating = rating;
   }
 
   get lang() {
@@ -29,6 +40,11 @@ export class MenuOfferCardComponent implements OnInit {
     return (this.lang === 'es' ? offer.description_offer_es : offer.description_offer_en);
   }
 
+  addOfferToCar(dailyOffer: MenuOfferItemInterface) {
+
+  }
+
+  /*
   evalRateOffer(dailyOffer: MenuOfferItemInterface) {
 
   }
@@ -36,9 +52,6 @@ export class MenuOfferCardComponent implements OnInit {
   shareOffer(dailyOffer: MenuOfferItemInterface) {
 
   }
-
-  addOfferToCar(dailyOffer: MenuOfferItemInterface) {
-
-  }
+  */
 
 }

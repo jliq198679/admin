@@ -23,6 +23,8 @@ import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/materia
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
+// Components
+import { SharedStarRateComponent } from './components';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -49,15 +51,24 @@ const MATERIAL_MODULES = [
   MatExpansionModule
 ];
 
+const SHARE_COMPONENTS = [
+  SharedStarRateComponent
+];
+
+
 @NgModule({
-  declarations: [],
+  declarations: [
+    SharedStarRateComponent
+  ],
   imports: [
     CommonModule,
     ...MATERIAL_MODULES
 
   ],
   exports: [
-    ...MATERIAL_MODULES
+    ...MATERIAL_MODULES,
+    ...SHARE_COMPONENTS
+
   ],
   providers: [
     {
