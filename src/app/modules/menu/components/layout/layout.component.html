@@ -5,8 +5,9 @@
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
   <menu-summary
-      *ngFor="let category of dailyOfferItems"
-      [category]="category">
+      *ngFor="let category of dailyOfferItems; let i = index"
+      [category]="category"
+      (selected)="onCategorySelected(i)">
   </menu-summary>
 </mat-menu>
 
