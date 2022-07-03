@@ -2,6 +2,9 @@
   <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
     <mat-icon>menu</mat-icon>
   </button>
+  <button mat-menu-item (click)="showCart()" class="btn-toolbar-car">
+    <mat-icon matBadge="15" matBadgeColor="warn" class="white-icon">shopping_cart</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
   <menu-summary

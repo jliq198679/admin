@@ -40,4 +40,8 @@ export class MenuLayoutComponent implements OnInit {
     return this.translateService.currentLang;
   }
 
+  showCart() {
+
+  }
+
 }
