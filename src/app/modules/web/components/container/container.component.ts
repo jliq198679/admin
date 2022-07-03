@@ -74,7 +74,7 @@ export class ContainerComponent implements OnInit {
 
   showModal(data?: any/*OfferInterface*/) {
     const dialogRef = this.dialog.open(AdminMenuCartComponent, {
-      width: '45%',
+      width: '100%',
       data: data
     });
 

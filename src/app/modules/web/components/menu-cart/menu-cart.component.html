@@ -15,26 +15,20 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div *ngFor="let subcategory of category['subcategories']; let j = index">
-            <strong>{{name_group(subcategory)}}</strong>
-
+            <strong>{{name_group(subcategory) | uppercase }}</strong>
             <mat-divider class="daily-offers-divider"></mat-divider>
-
-            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-              <div *ngFor="let dailyOffer of subcategory['dailyOffers']" class="daily-offers-block" fxFlex="50">
+            <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start center">
+              <div
+                  *ngFor="let dailyOffer of subcategory['dailyOffers']"
+                  class="daily-offers-block"
+                  fxFlex="25"
+                  fxFlex.md="33"
+                  fxFlex.sm="50"
+                  fxFlex.xs="100"
+                  fxLayout="column"
+                  style="padding: 5px;">
 
                 <menu-offer-card [dailyOffer]="dailyOffer"></menu-offer-card>
-<!--
-                <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-around center">
-
-                  <span fxFlex="70">{{ j + 1 }}. {{offer?.name_offer_es}}</span>
-
-                  <mat-form-field appearance="outline" fxFlex="30">
-                    <mat-label>Cantidad</mat-label>
-                    <input matInput [formControlName]="offer.id.toString()" type="number" min="1">
-                  </mat-form-field>
-
-                </div>
-    -->
               </div>
             </div>
 
