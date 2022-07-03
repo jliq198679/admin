@@ -13,14 +13,12 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav mode="side" opened fxHide.xs>
       <menu-summary
-          *ngFor="let category of dailyOfferItems"
-          [category]="category">
+          *ngFor="let category of dailyOfferItems; let i = index"
+          [category]="category"
+          (selected)="onCategorySelected(i)">
       </menu-summary>
   </mat-sidenav>
   <mat-sidenav-content>
-      <menu-category id="{{'category-' + category.id}}"
-          *ngFor="let category of dailyOfferItems"
-          [category]="category">
-      </menu-category>
+      <menu-category [category]="dailyOfferItems[categorySelectedIndex]"></menu-category>
   </mat-sidenav-content>
 </mat-sidenav-container>

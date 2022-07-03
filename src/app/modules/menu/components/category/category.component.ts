@@ -16,7 +16,7 @@ export class MenuCategoryComponent implements OnInit {
   }
 
   name_group(category): string {
-    return (this.lang === 'es' ? category.name_group_es : category.name_group_en);
+    return (this.lang === 'es' ? category?.name_group_es : category?.name_group_en);
   }
 
   get lang() {

@@ -8,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuLayoutComponent implements OnInit {
 
-  dailyOfferItems = []
+  dailyOfferItems = [];
+  categorySelectedIndex: number = 0;
 
   constructor(private dailyOfferService: SharedDailyOfferService) { }
 
   ngOnInit(): void {
     this.loadDailyOfferItems();
+  }
+
+  onCategorySelected(index: number) {
+    this.categorySelectedIndex = index;
   }
 
   loadDailyOfferItems() {

@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>{{name_group(category) | uppercase }}</mat-card-title>
-  <div *ngFor="let subcategory of category['subs_category']">
+  <div *ngFor="let subcategory of category?.subs_category">
     <strong>{{name_group(subcategory) | uppercase }}</strong>
     <mat-divider class="daily-offers-divider"></mat-divider>
     <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start center">

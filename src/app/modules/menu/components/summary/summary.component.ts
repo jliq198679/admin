@@ -1,5 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'menu-summary',
@@ -9,10 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MenuSummaryComponent implements OnInit {
 
   @Input() category;
+  @Output() selected = new EventEmitter<void>();
 
   constructor(public translateService: TranslateService) { }
 
   ngOnInit(): void {
+  }
+
+  onCategorySelect() {
+    this.selected.emit();
   }
 
   name_group(category): string {
