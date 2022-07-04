@@ -1,7 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { StarRatingColor } from '../../../shared/components';
 import { MenuOfferItemInterface } from '../../../shared/interfaces';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'menu-offer-card',
@@ -11,6 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MenuOfferCardComponent implements OnInit {
 
   @Input() dailyOffer: MenuOfferItemInterface;
+  @Output() selected = new EventEmitter<MenuOfferItemInterface>()
 
   rating:number = 5;
   starCount:number = 5;
@@ -24,7 +25,6 @@ export class MenuOfferCardComponent implements OnInit {
   }
 
   onRatingChanged(rating){
-    console.log(rating);
     this.rating = rating;
   }
 
@@ -41,6 +41,6 @@ export class MenuOfferCardComponent implements OnInit {
   }
 
   addOfferToCar(dailyOffer: MenuOfferItemInterface) {
-    console.log(dailyOffer)
+    this.selected.emit(dailyOffer);
   }
 }

@@ -1,5 +1,8 @@
+import { MatDialog } from '@angular/material/dialog';
+import { MenuCheckoutComponent } from './../checkout/checkout.component';
+import { MenuOfferItemInterface } from './../../../shared/interfaces';
 import { TranslateService } from '@ngx-translate/core';
-import { SharedDailyOfferService } from './../../../shared/services/daily-offer/daily-offer.service';
+import { SharedDailyOfferService } from './../../../shared/services';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,14 +14,21 @@ export class MenuLayoutComponent implements OnInit {
 
   dailyOfferItems = [];
   categorySelectedIndex: number = 0;
+  selectionCar: MenuOfferItemInterface[] = [];
 
   constructor(
       private dailyOfferService: SharedDailyOfferService,
-      public translateService: TranslateService
+      public translateService: TranslateService,
+      public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.loadDailyOfferItems();
+  }
+
+  onAddOfferToCard(selectedOffer: MenuOfferItemInterface) {
+    console.log(selectedOffer)
+    this.selectionCar.push(selectedOffer);
   }
 
   onCategorySelected(index: number) {
@@ -41,7 +51,19 @@ export class MenuLayoutComponent implements OnInit {
   }
 
   showCart() {
+    if(this.selectionCar.length > 0) {
+      const dialogRef = this.dialog.open(MenuCheckoutComponent, {
+        width: '100%',
+        height: '100%',
+        data: this.selectionCar
+      });
 
+      dialogRef.afterClosed().subscribe(() => {
+
+      });
+    }
   }
+
+
 
 }

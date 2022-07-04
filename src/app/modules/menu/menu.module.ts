@@ -9,7 +9,8 @@ import {
   MenuLayoutComponent,
   MenuCategoryComponent,
   MenuOfferCardComponent,
-  MenuSummaryComponent
+  MenuSummaryComponent,
+  MenuCheckoutComponent
 } from './components';
 
 @NgModule({
@@ -17,7 +18,8 @@ import {
     MenuLayoutComponent,
     MenuCategoryComponent,
     MenuOfferCardComponent,
-    MenuSummaryComponent
+    MenuSummaryComponent,
+    MenuCheckoutComponent
   ],
   imports: [
     CommonModule,

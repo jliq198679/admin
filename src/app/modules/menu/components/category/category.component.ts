@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { MenuOfferItemInterface } from './../../../shared/interfaces';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -9,10 +10,15 @@ import { TranslateService } from '@ngx-translate/core';
 export class MenuCategoryComponent implements OnInit {
 
   @Input() category;
+  @Output() selected = new EventEmitter<MenuOfferItemInterface>()
 
   constructor(public translateService: TranslateService) { }
 
   ngOnInit(): void {
+  }
+
+  onAddOfferToCard(selectedOffer: MenuOfferItemInterface) {
+    this.selected.emit(selectedOffer);
   }
 
   name_group(category): string {

@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>CHECKOUT</h2>
+<mat-dialog-content>
+
+  <mat-horizontal-stepper *ngIf="!smallScreen" [linear]="isLinear" #stepperHorizontal>
+    <mat-step>
+      1
+    </mat-step>
+    <mat-step>
+      2
+    </mat-step>
+    <mat-step>
+      3
+    </mat-step>
+  </mat-horizontal-stepper>
+
+  <mat-vertical-stepper *ngIf="smallScreen" [linear]="isLinear" #stepperVertical>
+    <mat-step>
+      1
+    </mat-step>
+    <mat-step>
+      2
+    </mat-step>
+    <mat-step>
+      3
+    </mat-step>
+  </mat-vertical-stepper>
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button cdkFocusInitial  (click)="save()">Aceptar</button>
+</mat-dialog-actions>
+

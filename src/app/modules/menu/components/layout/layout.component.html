@@ -4,7 +4,7 @@
   </button>
   <span class="manu-toolbar-spacer"></span>
   <button mat-menu-item (click)="showCart()" class="btn-toolbar-car">
-    <mat-icon matBadge="15" matBadgeColor="warn" class="white-icon">shopping_cart</mat-icon>
+    <mat-icon matBadge="{{selectionCar.length || null}}" matBadgeColor="warn" class="white-icon">shopping_cart</mat-icon>
   </button>
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
@@ -26,6 +26,8 @@
     </ng-container>
   </mat-sidenav>
   <mat-sidenav-content>
-      <menu-category [category]="dailyOfferItems[categorySelectedIndex]"></menu-category>
+      <menu-category
+          [category]="dailyOfferItems[categorySelectedIndex]"
+          (selected)="onAddOfferToCard($event)"></menu-category>
   </mat-sidenav-content>
 </mat-sidenav-container>

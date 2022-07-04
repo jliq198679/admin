@@ -24,6 +24,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatStepperModule} from '@angular/material/stepper';
 
 // Components
 import { SharedStarRateComponent } from './components';
@@ -51,7 +52,8 @@ const MATERIAL_MODULES = [
   MatTooltipModule,
   MatFormFieldModule,
   MatExpansionModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatStepperModule
 ];
 
 const SHARE_COMPONENTS = [

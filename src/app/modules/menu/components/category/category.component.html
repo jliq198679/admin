@@ -1,16 +1,14 @@
 <mat-card class="category-card">
+
   <mat-card-title fxLayoutAlign="start center">
     <span>{{name_group(category) | uppercase }}</span>
     <span class="badge badge-light">{{category?.offers_count}}</span>
   </mat-card-title>
+
   <mat-divider></mat-divider>
   <div *ngFor="let subcategory of category?.subs_category" class="subcategory-container">
     <button mat-raised-button class="btn-subcategory-sep" color="primary" disabled>
-      <mat-icon>
-        <span class="material-symbols-outlined">
-          subdirectory_arrow_right
-        </span>
-      </mat-icon>
+      <mat-icon>subdirectory_arrow_right</mat-icon>
       <strong>{{name_group(subcategory) | uppercase }} </strong>
       <span class="badge badge-light">{{subcategory?.offers_count}}</span>
     </button>
@@ -24,7 +22,10 @@
           fxFlex.xs="48"
           fxLayout="column"
          >
-        <menu-offer-card [dailyOffer]="dailyOffer"></menu-offer-card>
+        <menu-offer-card
+            [dailyOffer]="dailyOffer"
+            (selected)="onAddOfferToCard($event)">
+        </menu-offer-card>
       </div>
     </div>
   </div>
