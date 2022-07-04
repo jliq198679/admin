@@ -41,17 +41,6 @@ export class MenuOfferCardComponent implements OnInit {
   }
 
   addOfferToCar(dailyOffer: MenuOfferItemInterface) {
-
+    console.log(dailyOffer)
   }
-
-  /*
-  evalRateOffer(dailyOffer: MenuOfferItemInterface) {
-
-  }
-
-  shareOffer(dailyOffer: MenuOfferItemInterface) {
-
-  }
-  */
-
 }

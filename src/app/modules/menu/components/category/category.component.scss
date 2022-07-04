@@ -1,5 +1,5 @@
 .category-card {
-  height: 100%;
+  height: auto;
 }
 
 .cards-container, .subcategory-container {
@@ -11,5 +11,7 @@
   width: 100%;
   display: flex;
   justify-content: start;
+  color: black !important;
+  font-size: 16px !important;
 }
 

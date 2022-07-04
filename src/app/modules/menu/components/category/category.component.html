@@ -5,7 +5,12 @@
   </mat-card-title>
   <mat-divider></mat-divider>
   <div *ngFor="let subcategory of category?.subs_category" class="subcategory-container">
-    <button mat-stroked-button class="btn-subcategory-sep" color="primary">
+    <button mat-raised-button class="btn-subcategory-sep" color="primary" disabled>
+      <mat-icon>
+        <span class="material-symbols-outlined">
+          subdirectory_arrow_right
+        </span>
+      </mat-icon>
       <strong>{{name_group(subcategory) | uppercase }} </strong>
       <span class="badge badge-light">{{subcategory?.offers_count}}</span>
     </button>
