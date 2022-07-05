@@ -40,4 +40,8 @@ export class MenuCheckoutComponent implements OnInit {
     return this.translateService.currentLang;
   }
 
+  name_offer(offer): string {
+    return (this.lang === 'es' ? offer.name_offer_es : offer.name_offer_en);
+  }
+
 }

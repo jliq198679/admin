@@ -34,5 +34,10 @@
       "eval-rate": "Assess the quality",
       "share": "Share with my friends and family",
       "add-to-car": "Add to cart"
+    },
+    "checkout": {
+      "confirm-order": "Confirm order",
+      "delivery-data": "Delivery data",
+      "make-payment": "Make payment"
     }
 }

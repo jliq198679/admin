@@ -1,15 +1,42 @@
-<h2 mat-dialog-title>CHECKOUT</h2>
+<h2 mat-dialog-title align="center">CHECKOUT</h2>
 <mat-dialog-content>
 
   <mat-horizontal-stepper *ngIf="!smallScreen" [linear]="isLinear" #stepperHorizontal>
     <mat-step>
-      1
+      <ng-template matStepLabel>{{'checkout.confirm-order' | translate }}</ng-template>
+      <mat-divider></mat-divider>
+      <mat-list>
+        <ng-container *ngFor="let dailyOffer of selectionCar">
+
+
+          <mat-list-item fxLayout="row">
+            <div fxFlex="60">
+              <div mat-line>
+                <strong>{{name_offer(dailyOffer)}}</strong>
+              </div>
+              <div mat-line *ngIf="true">
+                Agregos/Guarniciones (#)
+              </div>
+            </div>
+
+            <div fxFlex="15">
+              <span>1</span>
+            </div>
+
+            <div fxFlex="25">
+              <span>{{dailyOffer?.price_cup}}</span>
+            </div>
+
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </mat-list>
     </mat-step>
     <mat-step>
-      2
+      <ng-template matStepLabel>{{'checkout.delivery-data' | translate }}</ng-template>
     </mat-step>
     <mat-step>
-      3
+      <ng-template matStepLabel>{{'checkout.make-payment' | translate }}</ng-template>
     </mat-step>
   </mat-horizontal-stepper>
 
@@ -24,8 +51,6 @@
       3
     </mat-step>
   </mat-vertical-stepper>
-
-
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">

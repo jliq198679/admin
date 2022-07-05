@@ -34,5 +34,10 @@
       "eval-rate": "Evaluar la calidad",
       "share": "Compartir con mis amigos y familiares",
       "add-to-car": "Añadir a la compra"
+    },
+    "checkout": {
+      "confirm-order": "Confirmar pedido",
+      "delivery-data": "Datos de entrega",
+      "make-payment": "Realizar pago"
     }
 }
