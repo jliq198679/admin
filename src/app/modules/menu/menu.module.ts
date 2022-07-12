@@ -10,7 +10,10 @@ import {
   MenuCategoryComponent,
   MenuOfferCardComponent,
   MenuSummaryComponent,
-  MenuCheckoutComponent
+  MenuCheckoutComponent,
+  MenuMakePaymentComponent,
+  MenuDeliveryDataComponent,
+  MenuConfirmOrderComponent
 } from './components';
 
 @NgModule({
@@ -19,7 +22,10 @@ import {
     MenuCategoryComponent,
     MenuOfferCardComponent,
     MenuSummaryComponent,
-    MenuCheckoutComponent
+    MenuCheckoutComponent,
+    MenuConfirmOrderComponent,
+    MenuDeliveryDataComponent,
+    MenuMakePaymentComponent
   ],
   imports: [
     CommonModule,

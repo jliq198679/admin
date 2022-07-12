@@ -1,0 +1,26 @@
+<mat-list>
+  <ng-container *ngFor="let dailyOffer of selectionCar">
+
+    <mat-list-item fxLayout="row">
+      <div fxFlex="60">
+        <div mat-line>
+          <strong>{{name_offer(dailyOffer)}}</strong>
+        </div>
+        <div mat-line *ngIf="true">
+          Agregos/Guarniciones (#)
+        </div>
+      </div>
+
+      <div fxFlex="15">
+        <span>1</span>
+      </div>
+
+      <div fxFlex="25">
+        <span>{{dailyOffer?.price_cup}}</span>
+      </div>
+
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+  </ng-container>
+</mat-list>

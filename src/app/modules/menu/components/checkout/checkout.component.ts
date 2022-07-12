@@ -17,7 +17,6 @@ export class MenuCheckoutComponent implements OnInit {
   isLinear = false;
 
   constructor(public dialogRef: MatDialogRef<MenuCheckoutComponent>,
-              public translateService: TranslateService,
               private breakpointObserver: BreakpointObserver,
               @Inject(MAT_DIALOG_DATA) public selectionCar) {
       breakpointObserver.observe([
@@ -29,19 +28,10 @@ export class MenuCheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.selectionCar)
   }
 
   save() {
 
-  }
-
-  get lang() {
-    return this.translateService.currentLang;
-  }
-
-  name_offer(offer): string {
-    return (this.lang === 'es' ? offer.name_offer_es : offer.name_offer_en);
   }
 
 }
