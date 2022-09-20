@@ -19,3 +19,23 @@
   flex: 1 1 auto;
 }
 
+::ng-deep {
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 15px !important;
+    width: 65px;
+  }
+
+  .mat-select-value-text {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mat-option {
+    height: 40px !important;
+  }
+}
+

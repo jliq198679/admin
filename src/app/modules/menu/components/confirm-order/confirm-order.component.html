@@ -2,7 +2,7 @@
   <ng-container *ngFor="let dailyOffer of selectionCar">
 
     <mat-list-item fxLayout="row">
-      <div fxFlex="60">
+      <div fxFlex="62">
         <div mat-line>
           <strong>{{name_offer(dailyOffer)}}</strong>
         </div>
@@ -11,12 +11,18 @@
         </div>
       </div>
 
-      <div fxFlex="15">
+      <div fxFlex="8" fxLayoutAlign="center center">
         <span>1</span>
       </div>
 
-      <div fxFlex="25">
+      <div fxFlex="16" fxLayoutAlign="end center">
         <span>{{dailyOffer?.price_cup}}</span>
+      </div>
+
+      <div fxFlex="14" fxLayoutAlign="end center">
+        <button mat-icon-button color="primary">
+          <mat-icon>edit_note</mat-icon>
+        </button>
       </div>
 
     </mat-list-item>

@@ -1,20 +1,27 @@
-<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
-  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="manu-toolbar-spacer"></span>
-  <button mat-menu-item (click)="showCart()" class="btn-toolbar-car">
-    <mat-icon matBadge="{{selectionCar.length || null}}" matBadgeColor="warn" class="white-icon">shopping_cart</mat-icon>
-  </button>
-</mat-toolbar>
-<mat-menu x-position="before" #menu="matMenu">
-  <menu-summary
-      *ngFor="let category of dailyOfferItems; let i = index"
-      [category]="category"
-      (selected)="onCategorySelected(i)">
-  </menu-summary>
-</mat-menu>
-
+<form [formGroup]="form">
+  <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="manu-toolbar-spacer"></span>
+      <mat-form-field>
+        <mat-select formControlName="currency" [compareWith]="compareWithFunc">
+          <mat-option value="cup">CUP</mat-option>
+          <mat-option value="usd">USD</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-menu-item (click)="showCart()" class="btn-toolbar-car">
+        <mat-icon matBadge="{{selectionCar.length || null}}" matBadgeColor="warn" class="white-icon">shopping_cart</mat-icon>
+      </button>
+  </mat-toolbar>
+  <mat-menu x-position="before" #menu="matMenu">
+    <menu-summary
+        *ngFor="let category of dailyOfferItems; let i = index"
+        [category]="category"
+        (selected)="onCategorySelected(i)">
+    </menu-summary>
+  </mat-menu>
+</form>
 <mat-sidenav-container class="sidenav-category">
   <mat-sidenav mode="side" opened fxHide.xs>
     <ng-container *ngIf="dailyOfferItems.length > 0">

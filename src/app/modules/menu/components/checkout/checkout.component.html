@@ -3,34 +3,33 @@
 
   <mat-horizontal-stepper [linear]="isLinear" #stepperHorizontal>
     <mat-step>
-      <ng-template matStepLabel>{{'checkout.confirm-order' | translate }}</ng-template>
+      <ng-template matStepLabel>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon>shopping_cart</mat-icon>
+          <span *ngIf="!smallScreen">{{'checkout.confirm-order' | translate }}</span>
+        </div>
+      </ng-template>
       <ng-container *ngTemplateOutlet="step1"></ng-container>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>{{'checkout.delivery-data' | translate }}</ng-template>
+      <ng-template matStepLabel>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon>local_shipping</mat-icon>
+          <span *ngIf="!smallScreen">{{'checkout.delivery-data' | translate }}</span>
+        </div>
+      </ng-template>
       <ng-container *ngTemplateOutlet="step2"></ng-container>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>{{'checkout.make-payment' | translate }}</ng-template>
+      <ng-template matStepLabel>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon>credit_card</mat-icon>
+          <span *ngIf="!smallScreen">{{'checkout.make-payment' | translate }}</span>
+        </div>
+      </ng-template>
       <ng-container *ngTemplateOutlet="step3"></ng-container>
     </mat-step>
   </mat-horizontal-stepper>
-<!--
-  <mat-vertical-stepper *ngIf="smallScreen" [linear]="isLinear" #stepperVertical>
-    <mat-step>
-      <ng-template matStepLabel>{{'checkout.confirm-order' | translate }}</ng-template>
-      <ng-container *ngTemplateOutlet="step1"></ng-container>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>{{'checkout.delivery-data' | translate }}</ng-template>
-      <ng-container *ngTemplateOutlet="step2"></ng-container>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>{{'checkout.make-payment' | translate }}</ng-template>
-      <ng-container *ngTemplateOutlet="step3"></ng-container>
-    </mat-step>
-  </mat-vertical-stepper>
--->
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
@@ -45,12 +44,10 @@
 
 <ng-template #step2>
   <mat-divider></mat-divider>
-  <menu-delivery-data [selectionCar]="selectionCar"></menu-delivery-data>
+  <menu-delivery-data></menu-delivery-data>
 </ng-template>
 
 <ng-template #step3>
   <mat-divider></mat-divider>
-  <menu-make-payment [selectionCar]="selectionCar"></menu-make-payment>
+  <menu-make-payment></menu-make-payment>
 </ng-template>
-
-

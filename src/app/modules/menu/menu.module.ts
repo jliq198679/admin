@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -30,6 +31,7 @@ import {
   imports: [
     CommonModule,
     MenuRoutingModule,
+    ReactiveFormsModule,
     SharedModule,
     FlexLayoutModule,
     TranslateModule.forChild()

@@ -1,3 +1,4 @@
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuCheckoutComponent } from './../checkout/checkout.component';
 import { MenuOfferItemInterface } from './../../../shared/interfaces';
@@ -12,6 +13,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuLayoutComponent implements OnInit {
 
+  form: FormGroup;
+
   dailyOfferItems = [];
   categorySelectedIndex: number = 0;
   selectionCar: MenuOfferItemInterface[] = [];
@@ -20,9 +23,11 @@ export class MenuLayoutComponent implements OnInit {
       private dailyOfferService: SharedDailyOfferService,
       public translateService: TranslateService,
       public dialog: MatDialog,
+      private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
     this.loadDailyOfferItems();
   }
 
@@ -64,6 +69,18 @@ export class MenuLayoutComponent implements OnInit {
     }
   }
 
+  compareWithFunc = (a: any, b: any) => a == b;
+
+  private initForm(): void {
+    console.log(navigator.language)
+    this.form = this.fb.group({
+      currency: ['cup']
+    });
+
+    this.form.get('currency').valueChanges.subscribe(value=>{
+      console.log(value)
+    })
+  }
 
 
 }
