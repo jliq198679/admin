@@ -14,7 +14,8 @@ import {
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent
+  ContactComponent,
+  SettingComponent
 } from './components';
 
 const routes: Routes = [
@@ -71,6 +72,11 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent
+      }
+      ,
+      {
+        path: 'setting',
+        component: SettingComponent
       }
     ]
   }

@@ -11,3 +11,4 @@ export * from './offers-groups';
 export * from './our-story';
 export * from './presentation';
 export * from './specials-offers';
+export * from './setting';

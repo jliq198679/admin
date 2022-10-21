@@ -24,7 +24,8 @@ import {
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent
+  ContactComponent,
+  SettingComponent
 } from './components';
 
 const COMPONENTS = [
@@ -44,7 +45,8 @@ const COMPONENTS = [
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent
+  ContactComponent,
+  SettingComponent
 ];
 
 

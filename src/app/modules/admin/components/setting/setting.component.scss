@@ -1,0 +1,19 @@
+::ng-deep app-presentation .mat-elevation-z8 {
+  min-width: 100% !important;
+}
+
+.table-title {
+  margin: 10px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.operation-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+::ng-deep app-contact .mat-card-header-text {
+  margin-left: 0px;
+}
