@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{groupGuarni ? 'Editar' : 'Añadir'}} {{categoryText}}</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form [formGroup]="form">
+
+    <div fxLayout="column" fxFlex >
+      <mat-form-field appearance="standard">
+        <mat-label>Nombre de {{categoryText}} (Español)</mat-label>
+        <input matInput formControlName="name_side_dish_es" #nameGroupEsInput>
+        <mat-error *ngIf="(form.get('name_side_dish_es')).errors?.required">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+          <mat-label>Nombre de {{categoryText}} (Ingles)</mat-label>
+          <input matInput formControlName="name_side_dish_en" #nameGroupEnInput>
+          <mat-error *ngIf="(form.get('name_side_dish_en')).errors?.required">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button cdkFocusInitial [disabled]="!form.valid" (click)="store()">Aceptar</button>
+</mat-dialog-actions>

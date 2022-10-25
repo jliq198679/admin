@@ -5,6 +5,8 @@ import { MenuOfferItemInterface } from './../../../shared/interfaces';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedDailyOfferService } from './../../../shared/services';
 import { Component, OnInit } from '@angular/core';
+import { AddGuarniCarComponent } from './../add-guarni-car';
+
 
 @Component({
   selector: 'menu-layout',
@@ -19,6 +21,9 @@ export class MenuLayoutComponent implements OnInit {
   categorySelectedIndex: number = 0;
   selectionCar: MenuOfferItemInterface[] = [];
 
+ typeguarni = [];
+ categorySelected: number;
+
   constructor(
       private dailyOfferService: SharedDailyOfferService,
       public translateService: TranslateService,
@@ -32,8 +37,31 @@ export class MenuLayoutComponent implements OnInit {
   }
 
   onAddOfferToCard(selectedOffer: MenuOfferItemInterface) {
-    console.log(selectedOffer)
-    this.selectionCar.push(selectedOffer);
+    //console.log(selectedOffer)
+    this.categorySelected = this.dailyOfferItems[this.categorySelectedIndex].id;
+    
+    this.dailyOfferService.getTypeGuarni(this.categorySelected).subscribe(data=>{
+      this.typeguarni = data;
+      console.log(this.typeguarni);
+    if(this.typeguarni.length > 0){
+    const dialogRef = this.dialog.open(AddGuarniCarComponent, {
+      width: '50%',
+      data: this.typeguarni
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.categorySelected = null;
+      
+      this.selectionCar.push(selectedOffer); 
+      
+       });
+      }
+    else{this.selectionCar.push(selectedOffer);}
+      
+    });
+    
+    
+    
   }
 
   onCategorySelected(index: number) {

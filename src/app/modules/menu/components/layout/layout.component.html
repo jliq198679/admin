@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
       <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
-        <mat-icon>menu</mat-icon>
+       <mat-icon>menu</mat-icon>
       </button>
       <span class="manu-toolbar-spacer"></span>
       <mat-form-field>
@@ -15,7 +15,7 @@
       </button>
   </mat-toolbar>
   <mat-menu x-position="before" #menu="matMenu">
-    <menu-summary
+   <menu-summary
         *ngFor="let category of dailyOfferItems; let i = index"
         [category]="category"
         (selected)="onCategorySelected(i)">
@@ -35,6 +35,7 @@
   <mat-sidenav-content>
       <menu-category
           [category]="dailyOfferItems[categorySelectedIndex]"
-          (selected)="onAddOfferToCard($event)"></menu-category>
+          (selected)="onAddOfferToCard($event)">
+      </menu-category>
   </mat-sidenav-content>
 </mat-sidenav-container>

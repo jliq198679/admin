@@ -11,7 +11,7 @@
       <mat-icon>subdirectory_arrow_right</mat-icon>
       <strong>{{name_group(subcategory) | uppercase }} </strong>
       <span class="badge badge-light">{{subcategory?.offers_count}}</span>
-    </button>
+   </button>
     <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start center" class="cards-container">
       <div
           *ngFor="let dailyOffer of subcategory.offers"

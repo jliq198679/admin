@@ -42,20 +42,20 @@ export class OfferListComponent implements OnInit {
               private specialOfferService: SpecialOfferService,
               private confirmDialogService: ConfirmDialogService) {
 
-  }
+   }
 
-  ngOnInit(): void {
-    this.filterForm = this.fb.group({
+   ngOnInit(): void {
+     this.filterForm = this.fb.group({
       main_group_offer_id: [-1],
       sub_group_offer_id: [-1],
       search: ['']
-    });
+     });
 
-    this.offerGroupService.get().subscribe(resp=>{
+     this.offerGroupService.get().subscribe(resp=>{
       this.mainOfferGroups = this.mainOfferGroups.concat(resp.data);
-    });
+     });
 
-    this.filterForm.controls['main_group_offer_id'].valueChanges.subscribe(id=>{
+     this.filterForm.controls['main_group_offer_id'].valueChanges.subscribe(id=>{
       this.offerGroupService.getSubcategories(id).subscribe(subCatResp=>{
         this.subOfferGroups = [ { id: -1 , name_group_es: "Todas" }];
         this.subOfferGroups = this.subOfferGroups.concat(subCatResp.data);
@@ -68,7 +68,7 @@ export class OfferListComponent implements OnInit {
           this.loadDatatable(1, 7, { category_id: id });
         }
       });
-    });
+     });
 
     this.filterForm.controls['sub_group_offer_id'].valueChanges.subscribe(id=>{
       const mainId = this.filterForm.controls['main_group_offer_id'].value;
@@ -135,6 +135,11 @@ export class OfferListComponent implements OnInit {
   offerImage(offer: OfferInterface): string {
     return offer.url_imagen !== 'null' ? offer.url_imagen : defaultImg;
   }
+
+  prueva(){
+    const msg = `Esto es una prueba`;
+        this.snackBar.open(msg, 'X');
+  } 
 
   toggleSpecialOffer(event: MatSlideToggleChange , element: OfferInterface) {
     if(event.checked) {

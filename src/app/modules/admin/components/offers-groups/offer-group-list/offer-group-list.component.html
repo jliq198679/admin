@@ -5,24 +5,64 @@
   <div class="flex-item">
     <h2 class="table-title">
       <mat-icon>kebab_dining</mat-icon>
-      <span>Categorías de oferta {{subcategoryText}}</span></h2>
+      <span *ngIf="!llamadatipoguarni">Categorías de oferta {{subcategoryText}}</span>
+      <span *ngIf="llamadatipoguarni"> Opciones de tipos de guarniciones para la categoría de {{nombredecategoria}}</span>
+    </h2>
   </div>
   <div class="flex-item">
-    <button *ngIf="parentCategory" mat-button class="menu-button" (click)="backToCategories()">
+    <button *ngIf="parentCategory||llamadatipoguarni" mat-button class="menu-button" (click)="backToCategories()">
       <mat-icon>arrow_back</mat-icon>
       <span>Volver</span>
     </button>
-    <button mat-button class="menu-button" (click)="showModal()">
+    <button *ngIf="!llamadatipoguarni" mat-button class="menu-button" (click)="showModal()">
       <mat-icon>add</mat-icon>
       <span>Añadir</span>
     </button>
+    <button *ngIf="llamadatipoguarni" mat-button class="menu-button" (click)="toggleAgregarGuarni()">
+      <mat-icon>add</mat-icon>
+      <span>Confirmar</span>
+    </button> 
   </div>
 </div>
 <mat-divider></mat-divider>
 <div class="mat-elevation-z8">
 
   <table mat-table [dataSource]="dataSource">
+  <div *ngIf="llamadatipoguarni">
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No </th>
+      <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+    </ng-container>
 
+    <!-- Name Column -->
+    <ng-container matColumnDef="name_group_es">
+      <th mat-header-cell *matHeaderCellDef> Nombre de grupo (Esp) </th>
+      <td mat-cell *matCellDef="let element"> {{element.name_type_side_dish_es}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="name_group_en">
+      <th mat-header-cell *matHeaderCellDef> Nombre de grupo (Ing) </th>
+      <td mat-cell *matCellDef="let element"> {{element.name_type_side_dish_en}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="operations">
+      <th mat-header-cell *matHeaderCellDef> Operaciones </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slide-toggle
+        [checked]="false"
+        (change)="pusharrdetoglle($event, element)">
+      </mat-slide-toggle>       
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </div>
+
+  <div *ngIf="!llamadatipoguarni">
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> No </th>
@@ -46,13 +86,15 @@
       <th mat-header-cell *matHeaderCellDef> Operaciones </th>
       <td mat-cell *matCellDef="let element">
         <button *ngIf="!parentCategory" mat-button class="table-operation-btn" matTooltip="Subcategorias" (click)="subCategory(element)"><mat-icon>category</mat-icon></button>
+        <button *ngIf="!parentCategory" mat-button color="warn" class="table-operation-btn" matTooltip="Guarnición" (click)="addguarni(element)"><mat-icon>list</mat-icon></button>
         <button mat-button color="primary" class="table-operation-btn" matTooltip="Editar" (click)="showModal(element)"><mat-icon>edit</mat-icon></button>
         <button mat-button color="warn" class="table-operation-btn" matTooltip="Eliminar" (click)="delete(element)"><mat-icon>delete</mat-icon></button>
-      </td>
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </div>
   </table>
 
   <mat-paginator  #paginator

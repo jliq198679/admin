@@ -14,8 +14,10 @@ import {
   MenuCheckoutComponent,
   MenuMakePaymentComponent,
   MenuDeliveryDataComponent,
-  MenuConfirmOrderComponent
+  MenuConfirmOrderComponent,
+  AddGuarniCarComponent
 } from './components';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {
     MenuCheckoutComponent,
     MenuConfirmOrderComponent,
     MenuDeliveryDataComponent,
-    MenuMakePaymentComponent
+    MenuMakePaymentComponent,
+    AddGuarniCarComponent
   ],
   imports: [
     CommonModule,

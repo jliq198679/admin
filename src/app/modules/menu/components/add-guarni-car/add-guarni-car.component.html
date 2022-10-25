@@ -1,0 +1,86 @@
+<h2 mat-dialog-title>Opciones de guarnición para la oferta seleccionada </h2>
+<mat-dialog-content class="mat-typography">
+
+    <div class="example-action-buttons">
+        <button mat-button (click)="accordion.openAll()">Expandir</button>
+        <button mat-button (click)="accordion.closeAll()">Recoger</button>
+    </div>
+      <mat-accordion class="example-headers-align" multi>
+        <div *ngFor="let typeguarni of datadialog">
+        <mat-expansion-panel >
+          <mat-expansion-panel-header>
+            <mat-panel-title >
+            <mat-icon>subdirectory_arrow_right</mat-icon>
+              Tipo de guarnición
+             </mat-panel-title>
+            <mat-panel-description>
+             {{typeguarni.name_type_side_dish_es | uppercase}}
+             <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+            <ng-container *ngFor="let guarni of typeguarni.arrGuarni" >
+            <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-around center">
+              <span >{{guarni.name_side_dish_es | uppercase}}</span>
+              <span> ${{guarni.price_cup }}</span>
+              <mat-form-field appearance="fill">
+                <mat-label>Cantidad</mat-label>
+                <input matInput type="number" min="1">
+              </mat-form-field>
+              <mat-slide-toggle 
+                [checked]="false"
+                (change)="msg()">
+              </mat-slide-toggle>
+            </div>
+            </ng-container>
+         
+        </mat-expansion-panel>
+      </div>
+      <!--
+          <mat-form-field appearance="fill">
+            <mat-label>Age</mat-label>
+            <input matInput type="number" min="1">
+          </mat-form-field>
+      
+        </mat-expansion-panel>
+        <mat-expansion-panel disabled>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Destination
+            </mat-panel-title>
+            <mat-panel-description>
+              Type the country name
+              <mat-icon>map</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-expansion-panel>
+      
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Day of the trip
+            </mat-panel-title>
+            <mat-panel-description>
+              Inform the date you wish to travel
+              <mat-icon>date_range</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
+          </mat-form-field>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-expansion-panel>
+        -->
+      </mat-accordion>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <!--<button mat-button cdkFocusInitial [disabled]="!form.valid" (click)="store()">Aceptar</button>-->
+</mat-dialog-actions>

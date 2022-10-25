@@ -68,12 +68,26 @@
 
     <button mat-button class="menu-button" (click)="navigateTo('offers')">
         <mat-icon>food_bank</mat-icon>
-        <span>Platillos</span>
+        <span>Ofertas</span>
     </button>
 
     <button mat-button class="menu-button" (click)="navigateTo('offer-groups')">
       <mat-icon>kebab_dining</mat-icon>
-      <span>Categorías</span>
+      <span>Categoría de ofertas</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <!--Acceso al grupo de guarniciones-->
+
+    <button mat-button class="menu-button" (click)="navigateTo('guarni')">
+      <mat-icon>food_bank</mat-icon>
+      <span>Guarnición</span>
+    </button>
+
+    <button mat-button class="menu-button" (click)="navigateTo('guarni-group')">
+      <mat-icon>kebab_dining</mat-icon>
+      <span>Tipos de guarnición</span>
     </button>
 
     <mat-divider></mat-divider>

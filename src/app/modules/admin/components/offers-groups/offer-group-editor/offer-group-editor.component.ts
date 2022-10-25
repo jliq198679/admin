@@ -37,11 +37,11 @@ export class OfferGroupEditorComponent implements OnInit {
       ...this.form.value,
       category_id: this.groupOffer?.category_id || this.parentGroupOffer?.id || null
     };
-
+    
     if(this.groupOffer) {
       data['id'] = this.groupOffer.id;
     }
-
+    
     const response = this.groupOffer ? this.groupOfferService.update(data) : this.groupOfferService.store(data);
 
     response.subscribe(resp=>{

@@ -6,3 +6,4 @@ export * from './checkout';
 export * from './confirm-order';
 export * from './delivery-data';
 export * from './make-payment';
+export * from './add-guarni-car';

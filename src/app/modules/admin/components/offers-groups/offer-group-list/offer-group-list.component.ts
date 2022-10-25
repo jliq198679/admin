@@ -1,12 +1,14 @@
 import { ConfirmDialogService } from './../../../services';
 import { OfferGroupEditorComponent } from './../offer-group-editor/offer-group-editor.component';
 import { GroupOfferInterface } from './../../../interfaces/group-offer/group-offer.interface';
+import { GroupGuarniInterface } from './../../../interfaces/group-guarni.interface';
 import { OfferGroupService } from './../../../services/group-offer/offer-group.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GuarniGroupService } from './../../../services/group-guarni/guarni-group.service';
 
 @Component({
   selector: 'app-offer-group-list',
@@ -14,11 +16,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./offer-group-list.component.scss']
 })
 export class OfferGroupListComponent implements OnInit, AfterViewInit {
-
+  
   parentCategory: GroupOfferInterface = null;
   groupOffers: GroupOfferInterface[] = [];
   displayedColumns: string[] = ['position', 'name_group_es', 'name_group_en', 'operations'/*, 'symbol'*/];
   dataSource = new MatTableDataSource<GroupOfferInterface>(this.groupOffers);
+
+  llamadatipoguarni: boolean = false;
+  elementypeoffer: number = null;
+  nombredecategoria: string = null;
+  arrdetoglle: number[] = [];
 
   /** Campos de paginado del datatable */
   pageEvent: PageEvent;
@@ -29,6 +36,8 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private groupOfferService: OfferGroupService,
+              private storeoffersidedishservice: OfferGroupService,
+              private groupGuarniService: GuarniGroupService,                 
               public dialog: MatDialog,
               private snackBar: MatSnackBar,
               private confirmDialogService: ConfirmDialogService) {
@@ -72,13 +81,51 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
   }
 
   loadDatatable(pageIndex: number, pageSize: number, category_id?: number) {
-    this.groupOfferService.datatable(pageIndex, pageSize, category_id).subscribe(
+     this.groupOfferService.datatable(pageIndex, pageSize, category_id).subscribe(
       response=>{
         this.dataSource = new MatTableDataSource<GroupOfferInterface>(response.data);
         this.pageIndex = response.current_page - 1;
         this.length = response.total;
       }
     );
+  }
+  
+  pusharrdetoglle(event, elementypeguarni){
+    if(event.checked){
+      this.arrdetoglle.push(elementypeguarni.id);
+      const msg = `Tipo de guarnición seleccionada para ser añadida a la categoría de oferta`;
+      this.snackBar.open(msg, 'X');}
+    else{
+      this.arrdetoglle=this.arrdetoglle.filter(n => n !== elementypeguarni.id);
+      const msg = `Tipo de guarnición seleccionada para ser eliminada de la categoría de oferta`;
+      this.snackBar.open(msg, 'X');}
+    console.log(this.arrdetoglle)
+  }
+
+  loadDatatableGroupGuarni(pageIndex: number, pageSize: number, id: number){
+    this.groupGuarniService.get().subscribe(
+      response=>{
+        console.log(response.data);
+        this.dataSource = new MatTableDataSource<GroupGuarniInterface>(response.data);
+        this.pageIndex = response.current_page - 1;
+        this.length = response.total;
+      }
+    );
+  }
+  
+   toggleAgregarGuarni(){
+    
+      this.storeoffersidedishservice.storeoffersidedish(this.elementypeoffer, this.arrdetoglle).subscribe(()=>{
+        const msg = `Operación realizada con exito`;
+        this.snackBar.open(msg, 'X');
+        })
+    }
+    
+  addguarni(element){
+    this.llamadatipoguarni = true;
+    this.elementypeoffer = element.id;
+    this.nombredecategoria = element.name_group_es;
+    this.loadDatatableGroupGuarni(1, 7, element.id)
   }
 
   getServerData(event) {
@@ -90,8 +137,11 @@ export class OfferGroupListComponent implements OnInit, AfterViewInit {
     this.loadDatatable(1, 7, element.id)
   }
 
+  
+
   backToCategories() {
     this.parentCategory = null;
+    this.llamadatipoguarni = false;
     this.loadDatatable(1, 7)
   }
 
