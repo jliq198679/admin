@@ -5,4 +5,5 @@ export interface GuarniInterface {
     name_side_dish_en?: string;
     price_cup?: number;
     price_usd?: number;
+    cant_selected?: number;
    }

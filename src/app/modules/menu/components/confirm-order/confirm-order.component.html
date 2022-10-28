@@ -7,8 +7,12 @@
           <strong>{{name_offer(dailyOffer)}}</strong>
         </div>
         <div mat-line *ngIf="true">
-          Agregos/Guarniciones (#)
+          Agregos/Guarniciones ({{number_guarni(dailyOffer)}})
         </div>
+        <div mat-line *ngFor="let i of dailyOffer.selected_guarni">
+          {{name_guarni(i)}}({{cant_selected(i)}})
+        </div>
+        
       </div>
 
       <div fxFlex="8" fxLayoutAlign="center center">

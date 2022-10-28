@@ -22,5 +22,17 @@ export class MenuConfirmOrderComponent implements OnInit {
   name_offer(offer): string {
     return (this.lang === 'es' ? offer.name_offer_es : offer.name_offer_en);
   }
+  
+  number_guarni(item){
+    return item.selected_guarni.length;
+  }
 
+  name_guarni(item){
+    return item.name_side_dish_es;
+  }
+
+  cant_selected(item){
+    return item.cant_selected;
+
+  }
 }

@@ -5,4 +5,5 @@ import { OfferInterface } from './../offer';
 export interface MenuOfferItemInterface extends OfferInterface {
     group_offer?: GroupOfferInterface
     offer_daily?: DailyOfferInterface
+    selected_guarni?: []
 }
