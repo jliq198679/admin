@@ -16,7 +16,8 @@ import {
   LayoutComponent,
   ContactComponent,
   GuarniGroupListComponent,
-  GuarniListComponent
+  GuarniListComponent,
+  SettingComponent
 } from './components';
 
 const routes: Routes = [
@@ -81,6 +82,11 @@ const routes: Routes = [
       {
         path: 'guarni',
         component: GuarniListComponent
+      }
+      ,
+      {
+        path: 'setting',
+        component: SettingComponent
       }
     ]
   }

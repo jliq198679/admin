@@ -10,4 +10,4 @@ export * from './special-offer';
 export * from './daily-offer';
 export * from './group-guarni';
 export * from './guarni';
-
+export * from './setting';
