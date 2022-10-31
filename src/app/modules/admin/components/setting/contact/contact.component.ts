@@ -1,15 +1,15 @@
-import { FrameWebIdEnum } from './../../enums/frame-web-id.enum';
+import { FrameWebIdEnum } from '../../../enums/frame-web-id.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PayloadWebService } from '../../services';
+import { PayloadWebService } from '../../../services';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'admin-setting-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class AdminSettingContactComponent implements OnInit {
 
   form: FormGroup;
   frameWeb: FrameWebIdEnum = FrameWebIdEnum.CONTACT;

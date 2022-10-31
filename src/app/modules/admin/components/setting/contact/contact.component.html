@@ -1,0 +1,86 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Datos de contacto y horario</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div  fxLayout="column">
+          <form [formGroup]="form">
+            <div fxLayout="row" fxLayoutGap="20px">
+              <div fxFlex="50">
+                <div fxLayout="column" fxFlex >
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Dirección linea 1 (Español)</mat-label>
+                    <input matInput formControlName="address_line1_es" #address_line1_es>
+                    <mat-error *ngIf="(form.get('address_line1_es')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Dirección linea 2 (Español)</mat-label>
+                    <input matInput formControlName="address_line2_es" #address_line2_es>
+                    <mat-error *ngIf="(form.get('address_line2_es')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Horario linea 1 (Español)</mat-label>
+                    <input matInput formControlName="opening_hours_line1_es" #opening_hours_line1_es>
+                    <mat-error *ngIf="(form.get('opening_hours_line1_es')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Horario linea 2 (Español)</mat-label>
+                    <input matInput formControlName="opening_hours_line2_es" #opening_hours_line2_es>
+                    <mat-error *ngIf="(form.get('opening_hours_line2_es')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput formControlName="reservation_phone" #reservation_phone>
+                    <mat-error *ngIf="(form.get('reservation_phone')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+              <div fxFlex="50">
+                <div fxLayout="column" fxFlex >
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Dirección linea 1 (Ingles)</mat-label>
+                    <input matInput formControlName="address_line1_en" #address_line1_en>
+                    <mat-error *ngIf="(form.get('address_line1_en')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Dirección linea 2 (Ingles)</mat-label>
+                    <input matInput formControlName="address_line2_en" #address_line2_en>
+                    <mat-error *ngIf="(form.get('address_line2_en')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Horario linea 1 (Ingles)</mat-label>
+                    <input matInput formControlName="opening_hours_line1_en" #opening_hours_line1_en>
+                    <mat-error *ngIf="(form.get('opening_hours_line1_en')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Horario linea 2 (Ingles)</mat-label>
+                    <input matInput formControlName="opening_hours_line2_en" #opening_hours_line2_en>
+                    <mat-error *ngIf="(form.get('opening_hours_line2_en')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+          </form>
+          <div class="operation-btn">
+            <button mat-raised-button color="primary" cdkFocusInitial [disabled]="!form.valid" (click)="update()">Guardar</button>
+          </div>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
+

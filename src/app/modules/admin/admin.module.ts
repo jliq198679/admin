@@ -28,9 +28,9 @@ import {
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent,
   SettingComponent,
-  AdminSettingCurrencyComponent
+  AdminSettingCurrencyComponent,
+  AdminSettingContactComponent
 } from './components';
 
 const COMPONENTS = [
@@ -54,9 +54,9 @@ const COMPONENTS = [
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent,
   SettingComponent,
-  AdminSettingCurrencyComponent
+  AdminSettingCurrencyComponent,
+  AdminSettingContactComponent,
 ];
 
 

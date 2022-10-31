@@ -14,7 +14,6 @@ import {
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent,
   GuarniGroupListComponent,
   GuarniListComponent,
   SettingComponent
@@ -70,10 +69,6 @@ const routes: Routes = [
       {
         path: 'chef',
         component: ChefComponent
-      },
-      {
-        path: 'contact',
-        component: ContactComponent
       },
       {
         path: 'guarni-group',

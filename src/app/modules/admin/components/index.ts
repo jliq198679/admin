@@ -1,6 +1,6 @@
 export * from './chef';
 export * from './confirm-dialog';
-export * from './contact';
+export * from './setting/contact';
 export * from './daily-offers';
 export * from './dashboard';
 export * from './gallery';
