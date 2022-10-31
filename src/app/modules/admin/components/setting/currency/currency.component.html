@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card>
+      <mat-card-content>
+        <div  fxLayout="column">
+          <form [formGroup]="form">
+            <div fxLayout="row" fxLayoutGap="20px">
+              <div fxFlex="50">
+                <div fxLayout="column" fxFlex >
+
+                  <mat-form-field appearance="standard">
+                    <mat-label>Tasa de cambio USD a CUP</mat-label>
+                    <input matInput formControlName="exchange_rate" #address_line1_es type="number">
+                    <mat-error *ngIf="(form.get('exchange_rate')).errors?.required">Este campo es obligatorio</mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+              <div fxFlex="50">
+                <div fxLayout="column" fxFlex >
+
+                </div>
+              </div>
+            </div>
+
+          </form>
+          <div class="operation-btn">
+            <button mat-raised-button color="primary" cdkFocusInitial [disabled]="!form.valid" (click)="update()">Guardar</button>
+          </div>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
+
