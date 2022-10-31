@@ -1,25 +1,15 @@
-<div class="flex-container"
-    fxLayout="row"
-    fxLayoutAlign="space-between center">
-  <div class="flex-item">
-    <h2 class="table-title"><mat-icon>badge</mat-icon><span>Historia</span></h2>
-  </div>
-  <div class="flex-item">
-  </div>
-</div>
-<mat-divider></mat-divider>
-<div class="mat-elevation-z8">
+
   <mat-card>
     <mat-card-content>
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Imagen histórica</mat-card-title>
+          <mat-card-title>Imagen de presentación</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <div fxLayout="row">
             <div fxFlex="50">
               <img mat-card-image
-                   src="{{storyImage}}"
+                   src="{{presentationImage}}"
                    alt="Imagen de presentación del restaurant"
                    style='height: 100%; width: 100%; object-fit: contain'>
             </div>
@@ -28,15 +18,9 @@
                     <form [formGroup]="form">
                       <div fxLayout="column" fxFlex >
                         <mat-form-field appearance="standard">
-                          <mat-label>Descripción(Español)</mat-label>
-                          <textarea matInput formControlName="description_es" #description_es></textarea>
-                          <mat-error *ngIf="(form.get('description_es')).errors?.required">Este campo es obligatorio</mat-error>
-                        </mat-form-field>
-
-                        <mat-form-field appearance="standard">
-                          <mat-label>Descripción(Ingles)</mat-label>
-                          <textarea matInput formControlName="description_en" #description_en></textarea>
-                          <mat-error *ngIf="(form.get('description_en')).errors?.required">Este campo es obligatorio</mat-error>
+                          <mat-label>Nombre del restaurant</mat-label>
+                          <input matInput formControlName="name" #name>
+                          <mat-error *ngIf="(form.get('name')).errors?.required">Este campo es obligatorio</mat-error>
                         </mat-form-field>
 
                         <mat-form-field appearance="standard">
@@ -62,5 +46,5 @@
       </mat-card>
     </mat-card-content>
   </mat-card>
-</div>
+
 

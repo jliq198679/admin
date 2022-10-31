@@ -1,15 +1,15 @@
-import { defaultImg } from './../../tools';
+import { defaultImg } from './../../../../tools';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PayloadWebService, UploadService } from './../../services';
+import { PayloadWebService, UploadService } from './../../../../services';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-presentation',
+  selector: 'admin-setting-presentation',
   templateUrl: './presentation.component.html',
   styleUrls: ['./presentation.component.scss']
 })
-export class PresentationComponent implements OnInit {
+export class AdminSettingPresentationComponent implements OnInit {
 
   presentationImage: string | ArrayBuffer = defaultImg;
   form: FormGroup;

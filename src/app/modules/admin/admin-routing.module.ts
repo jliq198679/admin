@@ -7,10 +7,7 @@ import {
   OfferGroupListComponent,
   SpecialOfferListComponent,
   DailyOfferListComponent,
-  PresentationComponent,
-  OurStoryComponent,
   GalleryComponent,
-  ChefComponent,
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
@@ -55,20 +52,8 @@ const routes: Routes = [
         component: OfferGroupListComponent
       },
       {
-        path: 'presentation',
-        component: PresentationComponent
-      },
-      {
-        path: 'our-story',
-        component: OurStoryComponent
-      },
-      {
         path: 'gallery',
         component: GalleryComponent
-      },
-      {
-        path: 'chef',
-        component: ChefComponent
       },
       {
         path: 'guarni-group',

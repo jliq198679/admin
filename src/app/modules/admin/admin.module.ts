@@ -20,17 +20,18 @@ import {
   SpecialOfferListComponent,
   DailyOfferListComponent,
   DailyOfferEditorComponent,
-  PresentationComponent,
-  OurStoryComponent,
   GalleryComponent,
-  ChefComponent,
   ConfirmDialogComponent,
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
   SettingComponent,
   AdminSettingCurrencyComponent,
-  AdminSettingContactComponent
+  AdminSettingContactComponent,
+  AdminSettingThemeComponent,
+  AdminSettingPresentationComponent,
+  AdminSettingOurStoryComponent,
+  AdminSettingChefComponent
 } from './components';
 
 const COMPONENTS = [
@@ -46,10 +47,7 @@ const COMPONENTS = [
   SpecialOfferListComponent,
   DailyOfferListComponent,
   DailyOfferEditorComponent,
-  PresentationComponent,
-  OurStoryComponent,
   GalleryComponent,
-  ChefComponent,
   ConfirmDialogComponent,
   DashboardComponent,
   LoginComponent,
@@ -57,6 +55,10 @@ const COMPONENTS = [
   SettingComponent,
   AdminSettingCurrencyComponent,
   AdminSettingContactComponent,
+  AdminSettingThemeComponent,
+  AdminSettingPresentationComponent,
+  AdminSettingOurStoryComponent,
+  AdminSettingChefComponent
 ];
 
 

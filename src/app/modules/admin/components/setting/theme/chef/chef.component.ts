@@ -1,16 +1,16 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PayloadWebService, UploadService } from './../../services';
-import { FrameWebIdEnum } from './../../enums';
+import { PayloadWebService, UploadService } from '../../../../services';
+import { FrameWebIdEnum } from '../../../../enums';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { defaultImg } from './../../tools';
+import { defaultImg } from '../../../../tools';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-chef',
+  selector: 'admin-setting-chef',
   templateUrl: './chef.component.html',
   styleUrls: ['./chef.component.scss']
 })
-export class ChefComponent implements OnInit {
+export class AdminSettingChefComponent implements OnInit {
 
   chefImage: string | ArrayBuffer = defaultImg;
   form: FormGroup;
