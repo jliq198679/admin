@@ -42,28 +42,29 @@ export class MenuLayoutComponent implements OnInit {
     
     this.dailyOfferService.getTypeGuarni(this.categorySelected).subscribe(data=>{
       this.typeguarni = data;
-      console.log(this.typeguarni);
+     // console.log(this.typeguarni);
     if(this.typeguarni.length > 0){
       const dialogRef = this.dialog.open(AddGuarniCarComponent, {
       width: '50%',
       data: this.typeguarni
      });
 
-      dialogRef.afterClosed().subscribe((arrGuarniSelected) => {
-      console.log(arrGuarniSelected)
-      selectedOffer.selected_guarni = arrGuarniSelected;
+     dialogRef.afterClosed().subscribe((arrGuarniSelected) => {
+      //console.log(arrGuarniSelected)
+      //selectedOffer.selected_guarni = arrGuarniSelected;
       this.categorySelected = null;
-      this.typeguarni = [];      
-      this.selectionCar.push(selectedOffer); 
+      this.typeguarni = [];
+      const newSelectedOffer = Object.assign({}, selectedOffer)
+      newSelectedOffer.selected_guarni = arrGuarniSelected;
+      this.selectionCar.push(newSelectedOffer);
+
+    });
       
-       });
     }
     else{this.selectionCar.push(selectedOffer);}
       
     });
-    
-    
-    
+       
   }
 
   onCategorySelected(index: number) {

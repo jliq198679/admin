@@ -24,7 +24,7 @@ export class AddGuarniCarComponent implements OnInit {
 
   @ViewChild(MatAccordion) accordion: MatAccordion;
   //datadialog: GuarniWithGroupGuarniInterface[];
-  datadialog: typeGuarniWithGuarniInterface[];
+  datadialog: typeGuarniWithGuarniInterface[]=[];
   arrGuarniSelected=[];
 
   constructor(public dialogRef: MatDialogRef<AddGuarniCarComponent>,
@@ -55,6 +55,7 @@ export class AddGuarniCarComponent implements OnInit {
 
   confirmarGuarni(){
     this.dialogRef.close(this.arrGuarniSelected);
+    
   }
 
 

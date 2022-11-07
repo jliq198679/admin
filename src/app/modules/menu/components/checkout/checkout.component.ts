@@ -28,6 +28,7 @@ export class MenuCheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.selectionCar,"seleccion del carro")
   }
 
   save() {

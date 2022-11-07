@@ -1,6 +1,8 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
-
+import { MatTableDataSource } from '@angular/material/table';
+import { MenuOfferItemInterface } from './../../../shared/interfaces';
+import { GuarniInterface } from './../../../admin/interfaces';
 @Component({
   selector: 'menu-confirm-order',
   templateUrl: './confirm-order.component.html',
@@ -8,11 +10,20 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MenuConfirmOrderComponent implements OnInit {
 
-  @Input() selectionCar;
+  @Input() selectionCar: MenuOfferItemInterface[] = [];
+  displayedColumns: string[] = ['position', 'name_offer_es', 'price_cup', 'price_usd', /*'is_promotion',*/ 'operations'];
+  dataSource = new MatTableDataSource<MenuOfferItemInterface>(this.selectionCar);
+
+  ELEMENT_DATA: GuarniInterface[];
 
   constructor(public translateService: TranslateService) { }
 
-  ngOnInit(): void { console.log(this.selectionCar)
+  ngOnInit(): void { 
+    console.log(this.selectionCar);
+    this.dataSource = new MatTableDataSource<MenuOfferItemInterface>(this.selectionCar);
+    //this.ELEMENT_DATA = this.selectionCar[0].selected_guarni;
+
+    
   }
 
   get lang() {
@@ -34,5 +45,34 @@ export class MenuConfirmOrderComponent implements OnInit {
   cant_selected(item){
     return item.cant_selected;
 
+  }
+
+  offerImage(offer): string {
+    return offer.url_imagen;
+  }
+
+  addGuarni(guarni){
+    guarni.cant_selected++;
+  }
+
+  removeGuarni(guarni){
+    if(guarni.cant_selected>1){guarni.cant_selected--;}
+  }
+
+  deleteGuarni(index,ind){
+   this.selectionCar[index].selected_guarni.splice(ind,1); 
+   console.log(index,ind);
+  }
+  
+  subTotalusd(data){
+    let val = data.price_usd;
+    for(let i of data.selected_guarni){val+=(i.price_usd*i.cant_selected);}
+    return val;
+  }
+
+  subTotalcup(data){
+    let val = data.price_cup;
+    for(let i of data.selected_guarni){val+=(i.price_cup*i.cant_selected);}
+    return val;
   }
 }
