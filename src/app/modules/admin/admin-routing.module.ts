@@ -62,8 +62,7 @@ const routes: Routes = [
       {
         path: 'guarni',
         component: GuarniListComponent
-      }
-      ,
+      },
       {
         path: 'setting',
         component: SettingComponent

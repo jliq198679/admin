@@ -31,7 +31,10 @@ import {
   AdminSettingThemeComponent,
   AdminSettingPresentationComponent,
   AdminSettingOurStoryComponent,
-  AdminSettingChefComponent
+  AdminSettingChefComponent,
+  // Delivery
+  AdminDeliveryListComponent,
+  AdminSettingDeliveryPlaceEditorComponent
 } from './components';
 
 const COMPONENTS = [
@@ -58,7 +61,9 @@ const COMPONENTS = [
   AdminSettingThemeComponent,
   AdminSettingPresentationComponent,
   AdminSettingOurStoryComponent,
-  AdminSettingChefComponent
+  AdminSettingChefComponent,
+  AdminDeliveryListComponent,
+  AdminSettingDeliveryPlaceEditorComponent
 ];
 
 
