@@ -23,7 +23,7 @@ export class OfferListComponent implements OnInit {
   subOfferGroups: GroupOfferInterface[] = [ { id: -1 , name_group_es: "Todas" }];
 
   offers: OfferInterface[] = [];
-  displayedColumns: string[] = ['position', 'image', 'name_offer_es', 'group_offer_id', 'price_cup', 'price_usd', 'is_promotion', 'operations'];
+  displayedColumns: string[] = ['position', 'image', 'name_offer_es', 'group_offer_id', 'price_cup', /*'price_usd',*/ 'is_promotion', 'operations'];
   dataSource = new MatTableDataSource<OfferInterface>(this.offers);
 
   /** Campos de paginado del datatable */

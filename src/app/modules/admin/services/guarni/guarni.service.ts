@@ -38,7 +38,7 @@ export class GuarniService {
     formData.append('name_side_dish_es', data.name_side_dish_es);
     formData.append('name_side_dish_en', data.name_side_dish_en);
     formData.append('price_cup', data.price_cup.toString());
-    formData.append('price_usd', data.price_usd.toString());
+    //formData.append('price_usd', data.price_usd.toString());
     //formData.append('url_imagen', data.url_imagen);
     formData.append('type_side_dish_id', data.type_side_dish_id.toString());
 

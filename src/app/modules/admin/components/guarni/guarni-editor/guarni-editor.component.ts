@@ -48,7 +48,7 @@ export class GuarniEditorComponent implements OnInit {
       name_side_dish_es: [this.guarni?.name_side_dish_es || null, [Validators.required]],
       name_side_dish_en: [this.guarni?.name_side_dish_en || null, [Validators.required]],
       price_cup: [this.guarni?.price_cup || null, [Validators.required]],
-      price_usd: [this.guarni?.price_usd || null, [Validators.required]],
+     // price_usd: [this.guarni?.price_usd || null, [Validators.required]],
       type_side_dish_id: [ type_side_dish_id, [Validators.required]],
       url_imagen: [null]
     });

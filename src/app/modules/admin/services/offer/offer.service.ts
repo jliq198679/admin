@@ -43,7 +43,7 @@ export class OfferService {
     formData.append('description_offer_es', data.description_offer_es);
     formData.append('description_offer_en', data.description_offer_en);
     formData.append('price_cup', data.price_cup.toString());
-    formData.append('price_usd', data.price_usd.toString());
+    //formData.append('price_usd', data.price_usd.toString());
     formData.append('url_imagen', data.url_imagen);
     formData.append('group_offer_id', data.group_offer_id.toString());
 

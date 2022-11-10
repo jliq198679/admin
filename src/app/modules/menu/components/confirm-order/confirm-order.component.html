@@ -44,7 +44,7 @@
     
       <tr>
         <th scope="col" style="width:50%;"> <span style="margin-left: 10px;">{{data.name_offer_es | uppercase}}</span></th>
-        <th scope="col" style="width:15%;text-align:right;">USD ${{data.price_usd}}</th>
+       <!-- <th scope="col" style="width:15%;text-align:right;">USD ${{data.price_usd}}</th>-->
         <th scope="col" style="width:15%;text-align:right;">CUP ${{data.price_cup}}</th>
         
       </tr>
@@ -52,15 +52,16 @@
     
      <tr class="mat-elevation-z8" *ngFor="let guarni of data.selected_guarni; let ind = index">
       <td><strong style="text-align:left;margin-left: 10px;">{{name_guarni(guarni)}}({{cant_selected(guarni)}})</strong></td>
-      <td style="text-align:right;"><strong >${{guarni.price_usd*guarni.cant_selected}}</strong></td>
+     <!-- <td style="text-align:right;"><strong >${{guarni.price_usd*guarni.cant_selected}}</strong></td>-->
       <td style="text-align:right;"><strong >${{guarni.price_cup*guarni.cant_selected}}</strong></td>
-      <td style="align-items: right;text-align:right;"><strong><button mat-icon-button   matTooltip="Aumentar" (click)="addGuarni(guarni)"><mat-icon style="font-size: 18px;  align-items: right ;margin-top: 10px;">add</mat-icon></button>
+      <td style="align-items: right;text-align:right;"><strong>
+                  <button mat-icon-button   matTooltip="Aumentar" (click)="addGuarni(guarni)"><mat-icon style="font-size: 18px;  align-items: right ;margin-top: 10px;">add</mat-icon></button>
                   <button mat-icon-button   matTooltip="Disminuir" (click)="removeGuarni(guarni)"><mat-icon style="font-size: 18px;  align-items: right ;margin-top: 10px;">remove</mat-icon></button>
                   <button mat-icon-button   matTooltip="Eliminar" (click)="deleteGuarni(index,ind)"><mat-icon style="font-size: 18px;  align-items: right ;margin-top: 10px;">delete_outline</mat-icon></button></strong></td>
      </tr>
      <tr>
       <td style="text-align:right;"><strong style="margin-left: 10px;">Total</strong></td>
-      <td style="text-align:right;"><strong>${{subTotalusd(data)}}</strong></td>
+    <!-- <td style="text-align:right;"><strong>${{subTotalusd(data)}}</strong></td> -->
       <td style="text-align:right;"><strong>${{subTotalcup(data)}}</strong></td>
      </tr>
   </table>

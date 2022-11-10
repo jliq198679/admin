@@ -24,7 +24,7 @@ export class GuarniListComponent implements OnInit {
   
 
   guarnis: GuarniInterface[] = [];
-  displayedColumns: string[] = ['position', /*'image',*/ 'name_side_dish_es', 'type_side_dish_id', 'price_cup', 'price_usd', 'operations'];
+  displayedColumns: string[] = ['position', /*'image',*/ 'name_side_dish_es', 'type_side_dish_id', 'price_cup', /*'price_usd',*/ 'operations'];
   dataSource = new MatTableDataSource<GuarniInterface>(this.guarnis);
 
   /** Campos de paginado del datatable */

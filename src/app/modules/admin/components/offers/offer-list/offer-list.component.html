@@ -2,7 +2,7 @@
     fxLayout="row"
     fxLayoutAlign="space-between center">
   <div class="flex-item">
-    <h2 class="table-title"><mat-icon>food_bank</mat-icon><span>Platillos</span></h2>
+    <h2 class="table-title"><mat-icon>food_bank</mat-icon><span>Ofertas</span></h2>
   </div>
 
   <div class="flex-item">
@@ -75,12 +75,12 @@
       <th mat-header-cell *matHeaderCellDef> Precio (CUP) </th>
       <td mat-cell *matCellDef="let element"> {{element.price_cup}} </td>
     </ng-container>
-
+    <!--
     <ng-container matColumnDef="price_usd">
       <th mat-header-cell *matHeaderCellDef> Precio (USD) </th>
       <td mat-cell *matCellDef="let element"> {{element.price_usd}} </td>
     </ng-container>
-
+     -->
     <ng-container matColumnDef="is_promotion">
       <th mat-header-cell *matHeaderCellDef> Oferta especial </th>
       <td mat-cell *matCellDef="let element">

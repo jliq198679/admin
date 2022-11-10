@@ -95,7 +95,7 @@ export class MenuLayoutComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(() => {
-
+        this.selectionCar = [];      
       });
     }
   }

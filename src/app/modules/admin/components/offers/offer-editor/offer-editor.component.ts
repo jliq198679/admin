@@ -43,7 +43,7 @@ export class OfferEditorComponent implements OnInit {
       description_offer_es: [this.offer?.description_offer_es || null, [Validators.required]],
       description_offer_en: [this.offer?.description_offer_en || null, [Validators.required]],
       price_cup: [this.offer?.price_cup || null, [Validators.required]],
-      price_usd: [this.offer?.price_usd || null, [Validators.required]],
+     // price_usd: [this.offer?.price_usd || null, [Validators.required]],
       main_group_offer_id: [ main_group_offer_id, [Validators.required]],
       group_offer_id: [this.offer?.group_offer_id || null],
       url_imagen: [null]
