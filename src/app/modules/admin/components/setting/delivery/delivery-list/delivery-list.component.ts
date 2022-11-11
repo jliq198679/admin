@@ -19,7 +19,6 @@ export class AdminDeliveryListComponent implements OnInit, AfterViewInit {
   municipalitySelected: number = null;
   deliveryPlaces: AdminSettingDeliveryPlaceInterface[] = [];
 
-  minicipalities: AdminSettingMunicipalityInterface[] = [];
   displayedColumns: string[] = ['position', 'name', 'price', 'operations'];
   dataSource = new MatTableDataSource<AdminSettingDeliveryPlaceInterface>(this.deliveryPlaces);
 
@@ -91,7 +90,7 @@ export class AdminDeliveryListComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(AdminSettingDeliveryPlaceEditorComponent, {
       width: '30%',
       data: {
-        municipality: this.minicipalities.find(m=>m.id === this.municipalitySelected),
+        municipality: this.municipalities.find(m=>m.id === this.municipalitySelected),
         deliveryPlace: data
       }
     });

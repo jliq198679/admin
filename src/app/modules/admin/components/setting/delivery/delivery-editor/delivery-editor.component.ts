@@ -38,7 +38,7 @@ export class AdminSettingDeliveryPlaceEditorComponent implements OnInit {
   store() {
     const data = {
       ...this.form.value,
-      municipality_id: this.deliveryPlace?.municipality_id
+      municipality_id: this.municipality.id
     };
 
     if(this.deliveryPlace) {

@@ -26,7 +26,7 @@ export class AdminSettingDeliveryPlaceService {
   }
 
   store(deliveryPlace: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/api/setting/delivery-place`, deliveryPlace);
+    return this.http.post(`${environment.apiUrl}/setting/delivery-place`, deliveryPlace);
   }
 
   update(id: number, deliveryPlace: any): Observable<any> {
@@ -34,7 +34,7 @@ export class AdminSettingDeliveryPlaceService {
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/api/setting/delivery-place/${id}`);
+    return this.http.delete(`${environment.apiUrl}/setting/delivery-place/${id}`);
   }
 
 }
