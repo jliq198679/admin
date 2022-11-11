@@ -12,3 +12,4 @@ export * from './specials-offers';
 export * from './guarni-groups';
 export * from './guarni';
 export * from './setting';
+export * from './loader-overlay';

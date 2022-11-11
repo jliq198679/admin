@@ -1,3 +1,5 @@
+import { AdminModule } from './modules/admin/admin.module';
+import { AdminLoaderInterceptorService } from './modules/admin/services/loader-interceptor/loader-interceptor.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AuthInterceptorService } from './modules/admin/services/auth-interceptor/auth-interceptor.service';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
@@ -26,6 +28,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AdminModule,
     // ngx-translate and the loader module
     TranslateModule.forRoot({
       loader: {
@@ -42,6 +45,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AdminLoaderInterceptorService,
+      multi: true,
     },
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,

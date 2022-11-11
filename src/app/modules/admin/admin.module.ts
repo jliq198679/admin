@@ -34,7 +34,9 @@ import {
   AdminSettingChefComponent,
   // Delivery
   AdminDeliveryListComponent,
-  AdminSettingDeliveryPlaceEditorComponent
+  AdminSettingDeliveryPlaceEditorComponent,
+  // Overlay
+  AdminLoaderOverlayComponent
 } from './components';
 
 const COMPONENTS = [
@@ -63,7 +65,8 @@ const COMPONENTS = [
   AdminSettingOurStoryComponent,
   AdminSettingChefComponent,
   AdminDeliveryListComponent,
-  AdminSettingDeliveryPlaceEditorComponent
+  AdminSettingDeliveryPlaceEditorComponent,
+  AdminLoaderOverlayComponent
 ];
 
 
@@ -79,7 +82,7 @@ const COMPONENTS = [
     FlexLayoutModule
   ],
   providers: [
-    ConfirmDialogService
+    ConfirmDialogService,
   ]
 })
 export class AdminModule { }
