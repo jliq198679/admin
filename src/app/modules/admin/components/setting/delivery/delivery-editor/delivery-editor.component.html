@@ -1,21 +1,18 @@
 <h2 mat-dialog-title>{{deliveryPlace ? 'Editar' : 'Añadir'}} lugar de entrega</h2>
 <mat-dialog-content class="mat-typography">
+  <form fxLayout="row" fxLayoutGap="15px" [formGroup]="form">
 
-  <form [formGroup]="form">
+    <mat-form-field  fxFlex="70" appearance="standard">
+      <mat-label>Nombre del lugar/reparto</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="(form.get('name')).errors?.required">Este campo es obligatorio</mat-error>
+    </mat-form-field>
 
-    <div fxLayout="column" fxFlex >
-      <mat-form-field appearance="standard">
-        <mat-label>Nombre del lugar/reparto</mat-label>
-        <input matInput formControlName="name" #nameGroupEsInput>
-        <mat-error *ngIf="(form.get('name')).errors?.required">Este campo es obligatorio</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="standard">
-          <mat-label>Costo del envio</mat-label>
-          <input matInput formControlName="price" #nameGroupEnInput>
-          <mat-error *ngIf="(form.get('price')).errors?.required">Este campo es obligatorio</mat-error>
-      </mat-form-field>
-    </div>
+    <mat-form-field fxFlex="30" appearance="standard">
+      <mat-label>Costo del envio</mat-label>
+      <input matInput formControlName="price" type="number">
+      <mat-error *ngIf="(form.get('price')).errors?.required">Este campo es obligatorio</mat-error>
+    </mat-form-field>
 
   </form>
 
