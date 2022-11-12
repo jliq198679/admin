@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuCheckoutComponent } from './../checkout/checkout.component';
 import { MenuOfferItemInterface } from './../../../shared/interfaces';
@@ -6,7 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { SharedDailyOfferService } from './../../../shared/services';
 import { Component, OnInit } from '@angular/core';
 import { AddGuarniCarComponent } from './../add-guarni-car';
-
+import { startWith } from 'rxjs/operators';
+import { SharedCurrencyEnum } from './../../../shared/enums';
+import { SharedCurrencyService } from './../../../shared/services';
 
 @Component({
   selector: 'menu-layout',
@@ -29,6 +31,7 @@ export class MenuLayoutComponent implements OnInit {
       public translateService: TranslateService,
       public dialog: MatDialog,
       private fb: FormBuilder,
+      private currencyService: SharedCurrencyService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +42,7 @@ export class MenuLayoutComponent implements OnInit {
   onAddOfferToCard(selectedOffer: MenuOfferItemInterface) {
     console.log(selectedOffer)
     this.categorySelected = this.dailyOfferItems[this.categorySelectedIndex].id;
-    
+
     this.dailyOfferService.getTypeGuarni(this.categorySelected).subscribe(data=>{
       this.typeguarni = data;
      // console.log(this.typeguarni);
@@ -59,12 +62,9 @@ export class MenuLayoutComponent implements OnInit {
       this.selectionCar.push(newSelectedOffer);
 
     });
-      
     }
     else{this.selectionCar.push(selectedOffer);}
-      
     });
-       
   }
 
   onCategorySelected(index: number) {
@@ -95,7 +95,7 @@ export class MenuLayoutComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(() => {
-        this.selectionCar = [];      
+        this.selectionCar = [];
       });
     }
   }
@@ -108,10 +108,15 @@ export class MenuLayoutComponent implements OnInit {
       currency: ['cup']
     });
 
-    this.form.get('currency').valueChanges.subscribe(value=>{
-      console.log(value)
-    })
+    this.currencySelectChangeSubscribe();
   }
 
+  private currencySelectChangeSubscribe() {
+    this.form.get('currency').valueChanges
+        .pipe(startWith(SharedCurrencyEnum.CUP))
+        .subscribe(
+          (currency: SharedCurrencyEnum)=>this.currencyService.currency$.next(currency)
+        );
+  }
 
 }

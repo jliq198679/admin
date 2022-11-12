@@ -15,7 +15,7 @@
 
   <mat-card-actions class="btns-offer-panel">
    <!-- <mat-card-subtitle>{{dailyOffer.price_cup}} CUP / {{dailyOffer.price_usd}} USD</mat-card-subtitle>-->
-    <mat-card-subtitle>{{dailyOffer.price_cup}} CUP </mat-card-subtitle>
+    <mat-card-subtitle>{{priceWithCurrency(dailyOffer.price_cup)}}</mat-card-subtitle>
     <button mat-button
        (click)="addOfferToCar(dailyOffer)"
        matTooltip="{{'menu-offer-item.add-to-car' | translate }}"

@@ -1,3 +1,4 @@
+import { SharedCurrencyService } from './../../../shared/services/currency/currency.service';
 import { TranslateService } from '@ngx-translate/core';
 import { StarRatingColor } from '../../../shared/components';
 import { MenuOfferItemInterface } from '../../../shared/interfaces';
@@ -19,7 +20,10 @@ export class MenuOfferCardComponent implements OnInit {
   starColorP:StarRatingColor = StarRatingColor.primary;
   starColorW:StarRatingColor = StarRatingColor.warn;
 
-  constructor(public translateService: TranslateService) { }
+  constructor(
+    public translateService: TranslateService,
+    public currencyService: SharedCurrencyService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -43,4 +47,14 @@ export class MenuOfferCardComponent implements OnInit {
   addOfferToCar(dailyOffer: MenuOfferItemInterface) {
     this.selected.emit(dailyOffer);
   }
+
+  public calcPrice(price: number) {
+    return this.currencyService.calcPrice(price);
+  }
+
+  public priceWithCurrency(price: number) {
+    return this.currencyService.priceWithCurrency(price);
+  }
+
+
 }
