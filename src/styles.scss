@@ -9,6 +9,18 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  padding-bottom: 0px;
+}
+
+h2::after {
+  display: none;
+}
+
+h2.mat-dialog-title {
+  margin-bottom: 0px;
+}
+
 table {
   width: 100%;
 }

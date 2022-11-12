@@ -1,17 +1,17 @@
-import { FrameWebIdEnum } from './../../enums/frame-web-id.enum';
-import { UploadService } from './../../services/upload/upload.service';
+import { FrameWebIdEnum } from './../../../../enums/frame-web-id.enum';
+import { UploadService } from './../../../../services/upload/upload.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PayloadWebService } from './../../services';
-import { defaultImg } from './../../tools/default.tool';
+import { PayloadWebService } from './../../../../services';
+import { defaultImg } from './../../../../tools/default.tool';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-our-story',
+  selector: 'admin-setting-our-story',
   templateUrl: './our-story.component.html',
   styleUrls: ['./our-story.component.scss']
 })
-export class OurStoryComponent implements OnInit {
+export class AdminSettingOurStoryComponent implements OnInit {
 
   storyImage: string | ArrayBuffer = defaultImg;
   form: FormGroup;

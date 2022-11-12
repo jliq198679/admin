@@ -7,16 +7,13 @@ import {
   OfferGroupListComponent,
   SpecialOfferListComponent,
   DailyOfferListComponent,
-  PresentationComponent,
-  OurStoryComponent,
   GalleryComponent,
-  ChefComponent,
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent,
   GuarniGroupListComponent,
-  GuarniListComponent
+  GuarniListComponent,
+  SettingComponent
 } from './components';
 
 const routes: Routes = [
@@ -55,24 +52,8 @@ const routes: Routes = [
         component: OfferGroupListComponent
       },
       {
-        path: 'presentation',
-        component: PresentationComponent
-      },
-      {
-        path: 'our-story',
-        component: OurStoryComponent
-      },
-      {
         path: 'gallery',
         component: GalleryComponent
-      },
-      {
-        path: 'chef',
-        component: ChefComponent
-      },
-      {
-        path: 'contact',
-        component: ContactComponent
       },
       {
         path: 'guarni-group',
@@ -81,6 +62,10 @@ const routes: Routes = [
       {
         path: 'guarni',
         component: GuarniListComponent
+      },
+      {
+        path: 'setting',
+        component: SettingComponent
       }
     ]
   }

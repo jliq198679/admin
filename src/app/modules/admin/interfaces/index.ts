@@ -8,4 +8,6 @@ export * from './daily-offer';
 export * from './guarni.Interface';
 export * from './group-guarni.Interface';
 export * from './guarni-with-group-guarni.Interface';
+export * from './delivery-place';
+export * from './municipality';
 

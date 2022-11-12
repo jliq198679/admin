@@ -25,6 +25,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 // Components
 import { SharedStarRateComponent } from './components';
@@ -53,7 +55,9 @@ const MATERIAL_MODULES = [
   MatFormFieldModule,
   MatExpansionModule,
   MatBadgeModule,
-  MatStepperModule
+  MatStepperModule,
+  MatTabsModule,
+  MatProgressSpinnerModule
 ];
 
 const SHARE_COMPONENTS = [

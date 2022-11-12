@@ -20,15 +20,23 @@ import {
   SpecialOfferListComponent,
   DailyOfferListComponent,
   DailyOfferEditorComponent,
-  PresentationComponent,
-  OurStoryComponent,
   GalleryComponent,
-  ChefComponent,
   ConfirmDialogComponent,
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent
+  SettingComponent,
+  AdminSettingCurrencyComponent,
+  AdminSettingContactComponent,
+  AdminSettingThemeComponent,
+  AdminSettingPresentationComponent,
+  AdminSettingOurStoryComponent,
+  AdminSettingChefComponent,
+  // Delivery
+  AdminDeliveryListComponent,
+  AdminSettingDeliveryPlaceEditorComponent,
+  // Overlay
+  AdminLoaderOverlayComponent
 } from './components';
 
 const COMPONENTS = [
@@ -44,15 +52,21 @@ const COMPONENTS = [
   SpecialOfferListComponent,
   DailyOfferListComponent,
   DailyOfferEditorComponent,
-  PresentationComponent,
-  OurStoryComponent,
   GalleryComponent,
-  ChefComponent,
   ConfirmDialogComponent,
   DashboardComponent,
   LoginComponent,
   LayoutComponent,
-  ContactComponent
+  SettingComponent,
+  AdminSettingCurrencyComponent,
+  AdminSettingContactComponent,
+  AdminSettingThemeComponent,
+  AdminSettingPresentationComponent,
+  AdminSettingOurStoryComponent,
+  AdminSettingChefComponent,
+  AdminDeliveryListComponent,
+  AdminSettingDeliveryPlaceEditorComponent,
+  AdminLoaderOverlayComponent
 ];
 
 
@@ -68,7 +82,7 @@ const COMPONENTS = [
     FlexLayoutModule
   ],
   providers: [
-    ConfirmDialogService
+    ConfirmDialogService,
   ]
 })
 export class AdminModule { }

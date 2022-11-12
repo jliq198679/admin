@@ -1,0 +1,26 @@
+<div class="flex-container"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+  <div class="flex-item">
+    <h2 class="table-title"><mat-icon>badge</mat-icon><span>Configuración</span></h2>
+  </div>
+  <div class="flex-item">
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="mat-elevation-z8">
+  <mat-tab-group>
+    <mat-tab label="Moneda">
+      <admin-setting-currency></admin-setting-currency>
+    </mat-tab>
+    <mat-tab label="Contacto">
+      <admin-setting-contact></admin-setting-contact>
+    </mat-tab>
+    <mat-tab label="Tema">
+      <admin-setting-theme></admin-setting-theme>
+    </mat-tab>
+    <mat-tab label="Entrega">
+      <admin-setting-delivery-list></admin-setting-delivery-list>
+    </mat-tab>
+  </mat-tab-group>
+</div>
