@@ -1,1 +1,6 @@
 <router-outlet></router-outlet>
+<!--Para probar notificaciones push-->
+<div *ngIf="message;">
+  <h1>{{ message.notification.title }}</h1>
+  <h2>{{ message.notification.body }}</h2>
+</div>

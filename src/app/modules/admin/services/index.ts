@@ -13,5 +13,6 @@ export * from './guarni';
 export * from './setting';
 export * from './municipality';
 export * from './delivery-place';
+export * from './push-notification';
 
 
