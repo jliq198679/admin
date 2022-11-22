@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{notification ? 'Editar' : 'Añadir'}} notificación</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form [formGroup]="form">
+    <div  fxLayout="column">
+      <mat-form-field appearance="standard">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title" #title>
+        <mat-error *ngIf="(form.get('title')).errors?.required">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Cuerpo</mat-label>
+        <textarea matInput formControlName="body" #body></textarea>
+        <mat-error *ngIf="(form.get('body')).errors?.required">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Acción</mat-label>
+        <input matInput formControlName="click_action" #click_action>
+        <mat-error *ngIf="(form.get('click_action')).errors?.required">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button cdkFocusInitial [disabled]="!form.valid" (click)="save()">Aceptar</button>
+</mat-dialog-actions>

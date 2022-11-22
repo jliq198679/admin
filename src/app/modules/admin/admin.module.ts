@@ -36,7 +36,10 @@ import {
   AdminDeliveryListComponent,
   AdminSettingDeliveryPlaceEditorComponent,
   // Overlay
-  AdminLoaderOverlayComponent
+  AdminLoaderOverlayComponent,
+  // Notificaciones
+  AdminNotificationListComponent,
+  AdminNotificationEditorComponent
 } from './components';
 
 const COMPONENTS = [
@@ -66,7 +69,9 @@ const COMPONENTS = [
   AdminSettingChefComponent,
   AdminDeliveryListComponent,
   AdminSettingDeliveryPlaceEditorComponent,
-  AdminLoaderOverlayComponent
+  AdminLoaderOverlayComponent,
+  AdminNotificationListComponent,
+  AdminNotificationEditorComponent
 ];
 
 
