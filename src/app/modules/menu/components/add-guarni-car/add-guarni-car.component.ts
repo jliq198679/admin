@@ -5,6 +5,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { GuarniWithGroupGuarniInterface} from './../../../admin/interfaces/guarni-with-group-guarni.interface';
 import { GuarniInterface } from './../../../admin/interfaces';
 import { SharedDailyOfferService } from './../../../shared/services';
+import { SharedCurrencyService } from './../../../shared/services/currency/currency.service';
 import { MatInput } from '@angular/material/input';
 
 
@@ -29,7 +30,7 @@ export class AddGuarniCarComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddGuarniCarComponent>,
               private dailyOfferService: SharedDailyOfferService,
-   
+              public currencyService: SharedCurrencyService,     
               @Inject(MAT_DIALOG_DATA) public data?: typeGuarniWithGuarniInterface[]) {
                 this.datadialog = data;
                }
@@ -58,7 +59,13 @@ export class AddGuarniCarComponent implements OnInit {
     
   }
 
-
+  public priceWithCurrency(price: number) {
+    return this.currencyService.calcPrice(price);
+  }
+  
+  public Moneda(){
+   return this.currencyService.typeCurrency();
+  }
 
 }
 

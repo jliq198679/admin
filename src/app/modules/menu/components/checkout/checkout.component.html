@@ -1,16 +1,20 @@
-<h2 mat-dialog-title align="center">CHECKOUT</h2>
-<mat-dialog-content>
+<!--<h2 mat-dialog-title align="center" >CHECKOUT</h2>-->
 
-  <mat-horizontal-stepper [linear]="isLinear" #stepperHorizontal>
+<mat-dialog-content >
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepperHorizontal >
     <mat-step>
       <ng-template matStepLabel>
         <div fxLayout="row" fxLayoutAlign="center center">
           <mat-icon>shopping_cart</mat-icon>
           <span *ngIf="!smallScreen">{{'checkout.confirm-order' | translate }}</span>
         </div>
-      </ng-template>
+      </ng-template> 
       <ng-container *ngTemplateOutlet="step1"></ng-container>
+      <button mat-button  mat-dialog-close >Atras</button> 
+      <button mat-button matStepperNext>Siguiente</button>
     </mat-step>
+    
     <mat-step>
       <ng-template matStepLabel>
         <div fxLayout="row" fxLayoutAlign="center center">
@@ -19,7 +23,10 @@
         </div>
       </ng-template>
       <ng-container *ngTemplateOutlet="step2"></ng-container>
+      <button mat-button matStepperPrevious>Atras</button>
+      <button mat-button matStepperNext>Siguiente</button>
     </mat-step>
+    
     <mat-step>
       <ng-template matStepLabel>
         <div fxLayout="row" fxLayoutAlign="center center">
@@ -27,17 +34,20 @@
           <span *ngIf="!smallScreen">{{'checkout.make-payment' | translate }}</span>
         </div>
       </ng-template>
-      <ng-container *ngTemplateOutlet="step3"></ng-container>
+      <ng-container *ngTemplateOutlet="step3" ></ng-container>
+      <button mat-button matStepperPrevious>Atras</button>
+      <button mat-button >Aceptar</button>
     </mat-step>
+    
   </mat-horizontal-stepper>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button cdkFocusInitial  (click)="save()">Aceptar</button>
+  <button mat-button (click)="Cancelar()">Cancelar</button>  
+  
 </mat-dialog-actions>
 
-<ng-template #step1>
+<ng-template #step1 >
   <mat-divider></mat-divider>
   <menu-confirm-order [selectionCar]="selectionCar"></menu-confirm-order>
 </ng-template>

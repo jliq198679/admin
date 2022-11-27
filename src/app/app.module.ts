@@ -7,6 +7,8 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from './modules/admin/components/confirm-dialog/confirm-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 
   })
   ],
-  exports: [TranslateModule],
+  exports: [TranslateModule,MatInputModule,MatFormFieldModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

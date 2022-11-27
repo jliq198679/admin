@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MenuOfferItemInterface } from './../../../shared/interfaces';
 import { GuarniInterface } from './../../../admin/interfaces';
+import { SharedCurrencyService } from './../../../shared/services/currency/currency.service';
 @Component({
   selector: 'menu-confirm-order',
   templateUrl: './confirm-order.component.html',
@@ -16,7 +17,8 @@ export class MenuConfirmOrderComponent implements OnInit {
 
   ELEMENT_DATA: GuarniInterface[];
 
-  constructor(public translateService: TranslateService) { }
+  constructor(public translateService: TranslateService,
+              public currencyService: SharedCurrencyService) { }
 
   ngOnInit(): void { 
     console.log(this.selectionCar);
@@ -63,6 +65,10 @@ export class MenuConfirmOrderComponent implements OnInit {
    this.selectionCar[index].selected_guarni.splice(ind,1); 
    console.log(index,ind);
   }
+
+  deleteOferta(index){
+    this.selectionCar.splice(index,1); 
+  }
   
   subTotalusd(data){
     let val = data.price_usd;
@@ -74,5 +80,13 @@ export class MenuConfirmOrderComponent implements OnInit {
     let val = data.price_cup;
     for(let i of data.selected_guarni){val+=(i.price_cup*i.cant_selected);}
     return val;
+  }
+
+  public priceWithCurrency(price: number) {
+    return this.currencyService.calcPrice(price);
+  }
+  
+  public Moneda(){
+   return this.currencyService.typeCurrency();
   }
 }

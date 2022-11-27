@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
+import { ConfirmDialogService } from './../../../admin/services/confirm-dialog';
 
 @Component({
   selector: 'menu-checkout',
@@ -18,6 +19,7 @@ export class MenuCheckoutComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<MenuCheckoutComponent>,
               private breakpointObserver: BreakpointObserver,
+              private confirmDialogService: ConfirmDialogService,
               @Inject(MAT_DIALOG_DATA) public selectionCar) {
       breakpointObserver.observe([
           Breakpoints.XSmall,
@@ -34,5 +36,16 @@ export class MenuCheckoutComponent implements OnInit {
   save() {
 
   }
+
+ async Cancelar(){
+   const msg = "¿Desea eliminar el pedido seleccionado?";
+    const confirm = await this.confirmDialogService.confirmDialog(msg);
+
+    if(confirm) {
+      this.dialogRef.close(true);
+    }
+  }
+
+ 
 
 }

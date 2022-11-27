@@ -94,8 +94,8 @@ export class MenuLayoutComponent implements OnInit {
         data: this.selectionCar
       });
 
-      dialogRef.afterClosed().subscribe(() => {
-        this.selectionCar = [];
+      dialogRef.afterClosed().subscribe((response) => {
+        if(response){this.selectionCar = [];}
       });
     }
   }
@@ -118,5 +118,6 @@ export class MenuLayoutComponent implements OnInit {
           (currency: SharedCurrencyEnum)=>this.currencyService.currency$.next(currency)
         );
   }
+ 
 
 }

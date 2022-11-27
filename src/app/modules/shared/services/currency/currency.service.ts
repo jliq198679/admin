@@ -37,5 +37,6 @@ export class SharedCurrencyService {
   priceWithCurrency(price: number): string {
     return this.calcPrice(price) + ' ' + this.currency$.value.toLocaleUpperCase();
   }
-
+  
+  typeCurrency(){ return this.currency$.value.toLocaleUpperCase();}
 }

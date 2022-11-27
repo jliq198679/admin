@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { MenuRoutingModule } from './menu-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule} from '@angular/material/form-field';
 import {
   MenuLayoutComponent,
   MenuCategoryComponent,
@@ -39,7 +41,12 @@ import {
     SharedModule,
     FlexLayoutModule,
     FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
     TranslateModule.forChild()
-  ]
+  ],
+  exports:[
+    MatInputModule,
+    MatFormFieldModule]
 })
 export class MenuModule { }
