@@ -32,8 +32,8 @@ export class AdminNotificationService {
     return this.http.delete(`${environment.apiUrl}/push-notification/${id}`);
   }
 
-  send(): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/push-notification/send`, {});
+  send(notification: AdminNotificationInterface): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/push-notification/send`, notification);
   }
 
 }

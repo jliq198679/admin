@@ -82,4 +82,10 @@ export class AdminNotificationListComponent implements OnInit {
     this.loadDatatable(event.previousPageIndex < event.pageIndex ? event.pageIndex + 1 : event.pageIndex - 1, this.pageSize);
   }
 
+  sendNotification(notification: AdminNotificationInterface) {
+    this.notificationService.send(notification).subscribe(()=>{
+      this.snackBar.open("Notificación enviada", "X")
+    })
+  }
+
 }
